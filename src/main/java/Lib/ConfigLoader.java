@@ -18,6 +18,5 @@ public class ConfigLoader {
         } catch (IOException | IllegalAccessException e) {
             e.printStackTrace();
         }
-
     }
 }
