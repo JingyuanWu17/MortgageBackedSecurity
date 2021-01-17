@@ -19,7 +19,7 @@ public class RuleEngine {
         return eligPools;
     }
 
-    public boolean checkElig(Loan loan, Pool pool) {
+    private boolean checkElig(Loan loan, Pool pool) {
         Class poolClass = pool.getClass();
         Field[] poolFields = poolClass.getDeclaredFields();
         for (Field poolField : poolFields) {
@@ -45,13 +45,13 @@ public class RuleEngine {
         return true;
     }
 
-    public boolean checkString(Loan loan, String poolFieldName, String poolValue) {
+    private boolean checkString(Loan loan, String poolFieldName, String poolValue) {
         String loanValue = getLoanValue(loan, poolFieldName);
         if (loanValue.isEmpty()) return true;
         return loanValue.equals(poolValue);
     }
 
-    public boolean checkRange(Loan loan, String poolFieldName, String poolValue) {
+    private boolean checkRange(Loan loan, String poolFieldName, String poolValue) {
         String loanFieldName = poolFieldName.substring(0, poolFieldName.indexOf("Range"));
         String loanValue = getLoanValue(loan, loanFieldName);
         if (loanValue.isEmpty()) return true;
@@ -66,7 +66,7 @@ public class RuleEngine {
         return (num > leftBound && num < rightBound) || (num == leftBound && leftInclusive) || (num == rightBound && rightInclusive);
     }
 
-    public boolean checkList(Loan loan, String poolFieldName, String poolValue) {
+    private boolean checkList(Loan loan, String poolFieldName, String poolValue) {
         String loanFieldName = poolFieldName.substring(0, poolFieldName.indexOf("List"));
         String loanValue = getLoanValue(loan, loanFieldName);
         if (loanValue.isEmpty()) return true;
