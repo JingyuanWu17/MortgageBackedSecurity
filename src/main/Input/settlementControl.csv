@@ -1,0 +1,10 @@
+pool_family_id,loan_status,first_issue_pre_bma,first_issue_post_bma,second_issue ,third_issue
+1,Inv,EPSD,EPSD,NONE,NONE
+1,Pipe,EPSD,EPSD,BMA,BMA
+1,Sold,EPSD,EPSD,NONE,NONE
+2,Inv,EPSD,EPSD,NONE,NONE
+2,Pipe,EPSD,EPSD,BMA,BMA
+2,Sold,EPSD,EPSD,NONE,NONE
+3,Inv,BMA,BMA,NONE,NONE
+3,Pipe,BMA,BMA,NONE,NONE
+3,Sold,BMA,BMA,NONE,NONE
