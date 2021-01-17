@@ -55,14 +55,13 @@ public class RuleEngine {
         String loanFieldName = poolFieldName.substring(0, poolFieldName.indexOf("Range"));
         String loanValue = getLoanValue(loan, loanFieldName);
         if (loanValue.isEmpty()) return true;
-        int n = poolValue.length();
+        poolValue = poolValue.trim();
         boolean leftInclusive = poolValue.charAt(0) == '[';
-        boolean rightInclusive = poolValue.charAt(n - 1) == ']';
-        String[] arr = poolValue.substring(1, n - 1).split("-");
-        double leftBound = Double.parseDouble(arr[0]);
-        double rightBound = Double.parseDouble(arr[1]);
+        boolean rightInclusive = poolValue.charAt(poolValue.length() - 1) == ']';
+        String[] arr = poolValue.substring(1, poolValue.length() - 1).split("-");
+        double leftBound = Double.parseDouble(arr[0].trim());
+        double rightBound = Double.parseDouble(arr[1].trim());
         double num = Double.parseDouble(loanValue);
-
         return (num > leftBound && num < rightBound) || (num == leftBound && leftInclusive) || (num == rightBound && rightInclusive);
     }
 
@@ -70,11 +69,13 @@ public class RuleEngine {
         String loanFieldName = poolFieldName.substring(0, poolFieldName.indexOf("List"));
         String loanValue = getLoanValue(loan, loanFieldName);
         if (loanValue.isEmpty()) return true;
-        String[] arr = poolValue.split(",");
-        Set<String> set = new HashSet<>(Arrays.asList(arr));
+        String[] arr = poolValue.trim().split(",");
+        Set<String> set = new HashSet<>();
+        for (String str : arr) {
+            set.add(str.trim());
+        }
         return set.contains(loanValue);
     }
-
 
     private String getLoanValue(Loan loan, String loanFieldName) {
         Class loanClass = loan.getClass();

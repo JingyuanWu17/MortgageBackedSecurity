@@ -42,6 +42,7 @@ public class TestRuleEngine {
 //        assertTrue(engine.checkString(loan, "FICO", "709"));
 //
 //        assertFalse(engine.checkString(loan, "SecuritizeHfiFlag", "1"));
+
 //    }
 //
 //    @Test
@@ -64,8 +65,7 @@ public class TestRuleEngine {
 //
 //        RuleEngine engine = new RuleEngine();
 //
-//        assertTrue(engine.checkList(loan, "LoanPurposeTypeList", "P,Q,R"));
-//
+//        assertTrue(engine.checkList(loan, "LoanPurposeTypeList", "P, Q, R"));
 //
 //    }
 //
@@ -82,7 +82,6 @@ public class TestRuleEngine {
 //        assertTrue(engine.checkElig(loan, pool));
 //
 //    }
-
 
 
 }
