@@ -3,139 +3,139 @@ package Data;
 import com.opencsv.bean.CsvBindByName;
 
 public class Loan {
-    @CsvBindByName (column = "LoanId")
+    @CsvBindByName(column = "LoanId")
     private String LoanId;
 
-    @CsvBindByName (column = "OriginalBalance")
+    @CsvBindByName(column = "OriginalBalance")
     private String OriginalBalance;
 
-    @CsvBindByName (column = "CurrentBalance")
+    @CsvBindByName(column = "CurrentBalance")
     private String CurrentBalance;
 
-    @CsvBindByName (column = "OriginalTerm")
+    @CsvBindByName(column = "OriginalTerm")
     private String OriginalTerm;
 
-    @CsvBindByName (column = "MortgageDate")
+    @CsvBindByName(column = "MortgageDate")
     private String MortgageDate;
 
-    @CsvBindByName (column = "State")
+    @CsvBindByName(column = "State")
     private String State;
 
-    @CsvBindByName (column = "GrossCoupon")
+    @CsvBindByName(column = "GrossCoupon")
     private String GrossCoupon;
 
-    @CsvBindByName (column = "AdjustedGrossCoupon")
+    @CsvBindByName(column = "AdjustedGrossCoupon")
     private String AdjustedGrossCoupon;
 
-    @CsvBindByName (column = "GuaranteeFee")
+    @CsvBindByName(column = "GuaranteeFee")
     private String GuaranteeFee;
 
-    @CsvBindByName (column = "BaseServicingFee")
+    @CsvBindByName(column = "BaseServicingFee")
     private String BaseServicingFee;
 
-    @CsvBindByName (column = "MaturityDate")
+    @CsvBindByName(column = "MaturityDate")
     private String MaturityDate;
 
-    @CsvBindByName (column = "RelocationFlag")
+    @CsvBindByName(column = "RelocationFlag")
     private String RelocationFlag;
 
-    @CsvBindByName (column = "CooperativeFlag")
+    @CsvBindByName(column = "CooperativeFlag")
     private String CooperativeFlag;
 
-    @CsvBindByName (column = "ReuralHousingFlag")
+    @CsvBindByName(column = "ReuralHousingFlag")
     private String ReuralHousingFlag;
 
-    @CsvBindByName (column = "GovtOrRualHousingFlag")
+    @CsvBindByName(column = "GovtOrRualHousingFlag")
     private String GovtOrRualHousingFlag;
 
-    @CsvBindByName (column = "MhaFlag")
+    @CsvBindByName(column = "MhaFlag")
     private String MhaFlag;
 
-    @CsvBindByName (column = "FICO")
+    @CsvBindByName(column = "FICO")
     private String FICO;
 
-    @CsvBindByName (column = "LtvPct")
+    @CsvBindByName(column = "LtvPct")
     private String LtvPct;
 
-    @CsvBindByName (column = "ConformingLoanAmountFlag")
+    @CsvBindByName(column = "ConformingLoanAmountFlag")
     private String ConformingLoanAmountFlag;
 
-    @CsvBindByName (column = "LoanPurposeType")
+    @CsvBindByName(column = "LoanPurposeType")
     private String LoanPurposeType;
 
-    @CsvBindByName (column = "Insurer")
+    @CsvBindByName(column = "Insurer")
     private String Insurer;
 
-    @CsvBindByName (column = "mortizationTerm")
+    @CsvBindByName(column = "AmortizationTerm")
     private String AmortizationTerm;
 
-    @CsvBindByName (column = "ProcessStatus")
+    @CsvBindByName(column = "ProcessStatus")
     private String ProcessStatus;
 
-    @CsvBindByName (column = "LPMIFlag")
+    @CsvBindByName(column = "LPMIFlag")
     private String LPMIFlag;
 
-    @CsvBindByName (column = "PaymentType")
+    @CsvBindByName(column = "PaymentType")
     private String PaymentType;
 
-    @CsvBindByName (column = "FirstPaymentDueDate")
+    @CsvBindByName(column = "FirstPaymentDueDate")
     private String FirstPaymentDueDate;
 
-    @CsvBindByName (column = "PackageTypeNumber")
+    @CsvBindByName(column = "PackageTypeNumber")
     private String PackageTypeNumber;
 
-    @CsvBindByName (column = "CorpusCoupon")
+    @CsvBindByName(column = "CorpusCoupon")
     private String CorpusCoupon;
 
-    @CsvBindByName (column = "BuyUpRate")
+    @CsvBindByName(column = "BuyUpRate")
     private String BuyUpRate;
 
-    @CsvBindByName (column = "BuyUpMults")
+    @CsvBindByName(column = "BuyUpMults")
     private String BuyUpMults;
 
-    @CsvBindByName (column = "BuyDownRate")
+    @CsvBindByName(column = "BuyDownRate")
     private String BuyDownRate;
 
-    @CsvBindByName (column = "BuyDownMults")
+    @CsvBindByName(column = "BuyDownMults")
     private String BuyDownMults;
 
-    @CsvBindByName (column = "ConformingLoanFlag")
+    @CsvBindByName(column = "ConformingLoanFlag")
     private String ConformingLoanFlag;
 
-    @CsvBindByName (column = "SecuritizeHfiFlag")
+    @CsvBindByName(column = "SecuritizeHfiFlag")
     private String SecuritizeHfiFlag;
 
-    @CsvBindByName (column = "FinalPackageFlag")
+    @CsvBindByName(column = "FinalPackageFlag")
     private String FinalPackageFlag;
 
-    @CsvBindByName (column = "DeficiencyFlag")
+    @CsvBindByName(column = "DeficiencyFlag")
     private String DeficiencyFlag;
 
-    @CsvBindByName (column = "ArmInitialResetDate")
+    @CsvBindByName(column = "ArmInitialResetDate")
     private String ArmInitialResetDate;
 
-    @CsvBindByName (column = "FundingDate")
+    @CsvBindByName(column = "FundingDate")
     private String FundingDate;
 
-    @CsvBindByName (column = "LockExpirationDate")
+    @CsvBindByName(column = "LockExpirationDate")
     private String LockExpirationDate;
 
-    @CsvBindByName (column = "InitialLockDate")
+    @CsvBindByName(column = "InitialLockDate")
     private String InitialLockDate;
 
-    @CsvBindByName (column = "PoolSettlementDate")
+    @CsvBindByName(column = "PoolSettlementDate")
     private String PoolSettlementDate;
 
-    @CsvBindByName (column = "JumboConformingFlag")
+    @CsvBindByName(column = "JumboConformingFlag")
     private String JumboConformingFlag;
 
-    @CsvBindByName (column = "FnmaHighLtvMhaFlag")
+    @CsvBindByName(column = "FnmaHighLtvMhaFlag")
     private String FnmaHighLtvMhaFlag;
 
-    @CsvBindByName (column = "FhlmcHighLtvMhaFlag")
+    @CsvBindByName(column = "FhlmcHighLtvMhaFlag")
     private String FhlmcHighLtvMhaFlag;
 
-    @CsvBindByName (column = "GovernmentOrRualHousingFlag")
+    @CsvBindByName(column = "GovernmentOrRualHousingFlag")
     private String GovernmentOrRualHousingFlag;
 
     public String getLoanId() {
