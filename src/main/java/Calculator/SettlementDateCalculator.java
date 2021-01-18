@@ -22,7 +22,7 @@ public class SettlementDateCalculator {
     private String inputFileName;
 
     public SettlementDateCalculator() {
-        ConfigLoader.load(SettlementDateCalculator.class, this, "src/main/resources/SettlementDateCalculator.properties");
+        ConfigLoader.load(SettlementDateCalculator.class, this, "src/main/resources/settlementDateCalculator.properties");
     }
 
     public String getWarehouseDays() {
@@ -37,7 +37,7 @@ public class SettlementDateCalculator {
         return BMAs;
     }
 
-    public List<Date> calculate(Loan loan, Pool pool) throws FileNotFoundException {
+    public List<Date> calculate(Loan loan, Pool pool){
 
         return null;
     }
