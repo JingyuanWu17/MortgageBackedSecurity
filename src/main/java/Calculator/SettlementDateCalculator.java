@@ -2,10 +2,14 @@ package Calculator;
 
 import Data.Loan;
 import Data.Pool;
+import Data.SettlementControl;
 import Lib.ConfigLoader;
+import com.opencsv.bean.CsvToBeanBuilder;
 
-import java.time.LocalDate;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -15,6 +19,7 @@ public class SettlementDateCalculator {
     private String warehouseDays;
     private String agencyProcessDays;
     private String BMAs;
+    private String inputFileName;
 
     public SettlementDateCalculator() {
         ConfigLoader.load(SettlementDateCalculator.class, this, "src/main/resources/SettlementDateCalculator.properties");
@@ -32,12 +37,15 @@ public class SettlementDateCalculator {
         return BMAs;
     }
 
-    public List<LocalDate> calculate(Loan loan, Pool pool) {
-        List<LocalDate> res = new ArrayList<>();
-        
+    public List<Date> calculate(Loan loan, Pool pool) throws FileNotFoundException {
 
-
-        return res;
+        return null;
     }
+
+    private Date calcESPD(Loan loan) {
+
+        return null;
+    }
+
 
 }
