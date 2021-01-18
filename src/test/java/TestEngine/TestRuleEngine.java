@@ -1,7 +1,8 @@
-package Engine;
+package TestEngine;
 
 import Data.Loan;
 import Data.Pool;
+import Engine.RuleEngine;
 import com.opencsv.bean.CsvToBeanBuilder;
 import org.junit.Test;
 

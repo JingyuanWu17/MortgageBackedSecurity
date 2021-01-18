@@ -9,10 +9,10 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class BusinessDayUtil {
+    private static final String dateFormat = "yyyy-MM-dd";
     private static final Map<Integer, Set<Date>> yearHolidaysCache = new HashMap<>();
 
     public static boolean isBusinessDay(Date dateToCheck) {
-
         Calendar baseCal = Calendar.getInstance();
         baseCal.setTime(DateUtils.truncate(dateToCheck, Calendar.DATE));
 
@@ -26,10 +26,13 @@ public class BusinessDayUtil {
         int dayOfWeek = baseCal.get(Calendar.DAY_OF_WEEK);
         boolean onWeekend = dayOfWeek == Calendar.SATURDAY || dayOfWeek == Calendar.SUNDAY;
 
-        //If it's not on weekend and not on a holiday
+        //Return true if the date is not on weekends and not on holidays
         return !(onWeekend || yearHolidays.contains(baseCal.getTime()));
     }
 
+    /**
+     * @return the next business day calculated from base date
+     */
     public static Date getNextBusinessDay(Date baseDate) {
         Date nextDay = DateUtils.truncate(addDays(baseDate, 1), Calendar.DATE);
 
@@ -40,7 +43,7 @@ public class BusinessDayUtil {
         }
     }
 
-    private static Date addDays(Date date, int days) {
+    public static Date addDays(Date date, int days) {
         if (date == null) {
             throw new IllegalArgumentException("Input date can't be null!");
         }
@@ -50,6 +53,9 @@ public class BusinessDayUtil {
         return tempCal.getTime();
     }
 
+    /**
+     * Read holidays of one specific year from configuration file
+     */
     private static void readYearHolidays(int year) {
         Properties pro = new Properties();
         try {
@@ -59,7 +65,7 @@ public class BusinessDayUtil {
             e.printStackTrace();
         }
         String yearHolidays = pro.getProperty(String.valueOf(year));
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        SimpleDateFormat sdf = new SimpleDateFormat(dateFormat, Locale.ENGLISH);
         String[] holidays = yearHolidays.split(",");
         Set<Date> holidaySet = new HashSet<>();
         for (String holiday : holidays) {
@@ -70,7 +76,6 @@ public class BusinessDayUtil {
                 e.printStackTrace();
             }
         }
-
         yearHolidaysCache.put(year, holidaySet);
     }
 

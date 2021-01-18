@@ -1,5 +1,6 @@
-package Data;
+package TestData;
 
+import Data.Pool;
 import com.opencsv.bean.CsvToBeanBuilder;
 import org.junit.Test;
 

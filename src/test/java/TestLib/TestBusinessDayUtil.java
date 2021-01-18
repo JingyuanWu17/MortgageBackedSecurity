@@ -1,5 +1,6 @@
-package Lib;
+package TestLib;
 
+import Lib.BusinessDayUtil;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
