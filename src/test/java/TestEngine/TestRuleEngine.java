@@ -18,7 +18,7 @@ public class TestRuleEngine {
         List<Pool> pools = new CsvToBeanBuilder(new FileReader("src/main/Input/pools.csv")).withType(Pool.class).build().parse();
 
         List<Loan> loans = new CsvToBeanBuilder(new FileReader("src/main/Input/loans.csv")).withType(Loan.class).build().parse();
-        Loan loan = loans.get(0);
+        Loan loan = loans.get(1);
 
         RuleEngine engine = new RuleEngine();
 

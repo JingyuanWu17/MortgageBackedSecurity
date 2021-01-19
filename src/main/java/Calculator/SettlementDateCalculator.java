@@ -38,6 +38,7 @@ public class SettlementDateCalculator {
         return agencyProcessDays;
     }
 
+
     /**
      * @return All possible settlement dates of this loan under this pool
      */
@@ -53,8 +54,6 @@ public class SettlementDateCalculator {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
-        assert settlementControls != null;
 
         //Search corresponding settlement date control object for this loan and pool.
         SettlementControl settlementControl = searchSettlementControl(settlementControls, loan, pool);
@@ -76,6 +75,7 @@ public class SettlementDateCalculator {
             } else if (first_issue_pre_bma.equals("BMA")) {
                 outputDates.add(currBMA);
             }
+
         } else { //EPSD is later than BMA
             epsd = getNextMonthFirstDayAsEPSD(epsd);
             currBMA = fourMonthsBMAs.get(++idx);
