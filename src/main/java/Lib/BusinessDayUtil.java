@@ -12,6 +12,9 @@ public class BusinessDayUtil {
     private static final String dateFormat = "yyyy-MM-dd";
     private static final Map<Integer, Set<Date>> yearHolidaysCache = new HashMap<>();
 
+    /**
+     * @return true if dateToCheck is not on weekends and not on holidays
+     */
     public static boolean isBusinessDay(Date dateToCheck) {
         Calendar baseCal = Calendar.getInstance();
         baseCal.setTime(DateUtils.truncate(dateToCheck, Calendar.DATE));
@@ -24,9 +27,9 @@ public class BusinessDayUtil {
         Set<Date> yearHolidays = yearHolidaysCache.get(year);
 
         int dayOfWeek = baseCal.get(Calendar.DAY_OF_WEEK);
+
         boolean onWeekend = dayOfWeek == Calendar.SATURDAY || dayOfWeek == Calendar.SUNDAY;
 
-        //Return true if the date is not on weekends and not on holidays
         return !(onWeekend || yearHolidays.contains(baseCal.getTime()));
     }
 
@@ -47,9 +50,11 @@ public class BusinessDayUtil {
         if (date == null) {
             throw new IllegalArgumentException("Input date can't be null!");
         }
+
         Calendar tempCal = Calendar.getInstance();
         tempCal.setTime(date);
         tempCal.add(Calendar.DATE, days);
+
         return tempCal.getTime();
     }
 
@@ -78,6 +83,5 @@ public class BusinessDayUtil {
         }
         yearHolidaysCache.put(year, holidaySet);
     }
-
 
 }
