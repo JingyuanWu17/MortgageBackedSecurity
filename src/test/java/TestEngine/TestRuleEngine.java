@@ -15,9 +15,9 @@ import static org.junit.Assert.*;
 public class TestRuleEngine {
     @Test
     public void test_checkEngine() throws FileNotFoundException {
-        List<Pool> pools = new CsvToBeanBuilder(new FileReader("src/main/Input/pools.csv")).withType(Pool.class).build().parse();
+        List<Pool> pools = new CsvToBeanBuilder(new FileReader("src/main/Input/Pools.csv")).withType(Pool.class).build().parse();
 
-        List<Loan> loans = new CsvToBeanBuilder(new FileReader("src/main/Input/loans.csv")).withType(Loan.class).build().parse();
+        List<Loan> loans = new CsvToBeanBuilder(new FileReader("src/main/Input/Loans.csv")).withType(Loan.class).build().parse();
 
         Loan loan1 = loans.get(0);
         Loan loan2 = loans.get(1);
@@ -33,10 +33,10 @@ public class TestRuleEngine {
 
 //    @Test
 //    public void test_checkElig() throws FileNotFoundException {
-//        List<Loan> loans = new CsvToBeanBuilder(new FileReader("src/main/Input/loans.csv")).withType(Loan.class).build().parse();
+//        List<Loan> loans = new CsvToBeanBuilder(new FileReader("src/main/Input/Loans.csv")).withType(Loan.class).build().parse();
 //        Loan loan = loans.get(0);
 //
-//        List<Pool> pools = new CsvToBeanBuilder(new FileReader("src/main/Input/pools.csv")).withType(Pool.class).build().parse();
+//        List<Pool> pools = new CsvToBeanBuilder(new FileReader("src/main/Input/Pools.csv")).withType(Pool.class).build().parse();
 //        Pool pool = pools.get(2);
 //
 //        RuleEngine engine = new RuleEngine();

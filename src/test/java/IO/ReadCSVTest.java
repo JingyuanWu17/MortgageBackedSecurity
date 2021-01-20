@@ -16,7 +16,7 @@ public class ReadCSVTest {
 
     @Test
     public void test_read() {
-        String fileName = "src/main/Input/pools.csv";
+        String fileName = "src/main/Input/Pools.csv";
         try (CSVReader reader = new CSVReader(new FileReader(fileName))) {
             reader.skip(1);
             List<String[]> r = reader.readAll();
@@ -28,7 +28,7 @@ public class ReadCSVTest {
 
     @Test
     public void test_creatObject() throws Exception{
-        String fileName = "src/main/Input/pools.csv";
+        String fileName = "src/main/Input/Pools.csv";
 
         List<Pool> pools = new CsvToBeanBuilder(new FileReader(fileName)).withType(Pool.class).build().parse();
         for(Pool pool : pools) {

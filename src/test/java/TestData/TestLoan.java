@@ -13,7 +13,7 @@ public class TestLoan {
 
     @Test
     public void test_creatObject() throws FileNotFoundException {
-        String fileName = "src/main/Input/loans.csv";
+        String fileName = "src/main/Input/Loans.csv";
 
         List<Loan> loans = new CsvToBeanBuilder(new FileReader(fileName)).withType(Loan.class).build().parse();
         Loan loan = loans.get(0);

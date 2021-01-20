@@ -11,7 +11,7 @@ public class TestPool {
 
     @Test
     public void test_creatObject() throws Exception {
-        String fileName = "src/main/Input/pools.csv";
+        String fileName = "src/main/Input/Pools.csv";
 
         List<Pool> pools = new CsvToBeanBuilder(new FileReader(fileName)).withType(Pool.class).build().parse();
         for (Pool pool : pools) {

@@ -2,7 +2,7 @@ package Data;
 
 import com.opencsv.bean.CsvBindByName;
 
-public class SettlementControl {
+public class SettlementControlData {
     @CsvBindByName(column = "pool_family_id")
     private String pool_family_id;
 

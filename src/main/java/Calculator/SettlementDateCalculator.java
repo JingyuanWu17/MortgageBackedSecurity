@@ -2,7 +2,7 @@ package Calculator;
 
 import Data.Loan;
 import Data.Pool;
-import Data.SettlementControl;
+import Data.SettlementControlData;
 import Lib.BusinessDayUtil;
 import Lib.ConfigLoader;
 import com.opencsv.CSVReader;
@@ -48,15 +48,15 @@ public class SettlementDateCalculator {
         Date epsd = calculateEPSD(loan);
         List<Date> fourMonthsBMAs = getFourMonthsBMAs(epsd);
 
-        List<SettlementControl> settlementControls = null;
+        List<SettlementControlData> settlementControls = null;
         try {
-            settlementControls = new CsvToBeanBuilder(new FileReader(settlementControlFileName)).withType(SettlementControl.class).build().parse();
+            settlementControls = new CsvToBeanBuilder(new FileReader(settlementControlFileName)).withType(SettlementControlData.class).build().parse();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
 
         //Search corresponding settlement date control object for this loan and pool.
-        SettlementControl settlementControl = searchSettlementControl(settlementControls, loan, pool);
+        SettlementControlData settlementControl = searchSettlementControl(settlementControls, loan, pool);
 
         if (settlementControl == null) {
             throw new RuntimeException("No matching settlementControl object!");
@@ -216,11 +216,11 @@ public class SettlementDateCalculator {
         return res;
     }
 
-    private SettlementControl searchSettlementControl(List<SettlementControl> settlementControls, Loan loan, Pool pool) {
+    private SettlementControlData searchSettlementControl(List<SettlementControlData> settlementControls, Loan loan, Pool pool) {
         String loanStatus = loan.getProcessStatus();
         String poolFamilyId = getPoolFamilyId(pool);
         settlementControls.get(1).getFirst_issue_pre_bma();
-        for (SettlementControl sc : settlementControls) {
+        for (SettlementControlData sc : settlementControls) {
             boolean b1 = sc.getPool_family_id().equals(poolFamilyId);
             boolean b2 = sc.getLoan_status().equals(loanStatus);
             if (b1 && b2) {
