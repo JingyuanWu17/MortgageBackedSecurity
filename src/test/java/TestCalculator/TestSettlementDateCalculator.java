@@ -13,7 +13,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class SettlementDateCalculatorTest {
+public class TestSettlementDateCalculator {
 
     @Test
     public void test_createObject() {

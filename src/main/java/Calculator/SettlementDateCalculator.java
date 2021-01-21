@@ -26,7 +26,7 @@ public class SettlementDateCalculator {
     private SimpleDateFormat sdf;
 
     public SettlementDateCalculator() {
-        ConfigLoader.load(SettlementDateCalculator.class, this, "src/main/resources/settlementDateCalculator.properties");
+        ConfigLoader.load(SettlementDateCalculator.class, this, "src/main/resources/SettlementDateCalculator.properties");
         sdf = new SimpleDateFormat(dateFormat, Locale.ENGLISH);
     }
 

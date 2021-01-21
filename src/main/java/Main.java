@@ -17,7 +17,7 @@ public class Main {
 
     public static void main(String[] args) throws FileNotFoundException {
 
-        ConfigLoader.load(Main.class, null, "src/main/resources/mainConfig.properties");
+        ConfigLoader.load(Main.class, null, "src/main/resources/Main.properties");
 
         List<Loan> loans = new CsvToBeanBuilder(new FileReader(loanFileName)).withType(Loan.class).build().parse();
 

@@ -64,7 +64,7 @@ public class BusinessDayUtil {
     private static void readYearHolidays(int year) {
         Properties pro = new Properties();
         try {
-            FileInputStream proStream = new FileInputStream("src/main/resources/yearHolidays.properties");
+            FileInputStream proStream = new FileInputStream("src/main/resources/YearHolidays.properties");
             pro.load(proStream);
         } catch (IOException e) {
             e.printStackTrace();
