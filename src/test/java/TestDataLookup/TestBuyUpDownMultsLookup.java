@@ -1,10 +1,10 @@
-package TestDataSearch;
+package TestDataLookup;
 
 import Calculator.SettlementDateCalculator;
-import Data.BuyUpDownMults;
-import Data.Loan;
-import Data.Pool;
-import DataSearch.BuyUpDownMultsSearch;
+import OutputData.BuyUpDownMults;
+import InputData.Loan;
+import InputData.Pool;
+import DataLookup.BuyUpDownMultsLookup;
 import com.opencsv.bean.CsvToBeanBuilder;
 import org.junit.Test;
 
@@ -15,22 +15,21 @@ import java.io.FileReader;
 import java.util.Date;
 import java.util.List;
 
-public class TestBuyUpDownMultsSearch {
+public class TestBuyUpDownMultsLookup {
 
     @Test
     public void test_creatObject() throws FileNotFoundException {
-        List<Loan> loans = new CsvToBeanBuilder(new FileReader("src/main/Input/Loans.csv")).withType(Loan.class).build().parse();
+        List<Loan> loans = new CsvToBeanBuilder(new FileReader("src/main/InputSamples/Loans.csv")).withType(Loan.class).build().parse();
         Loan loan = loans.get(0);
 
-        List<Pool> pools = new CsvToBeanBuilder(new FileReader("src/main/Input/Pools.csv")).withType(Pool.class).build().parse();
+        List<Pool> pools = new CsvToBeanBuilder(new FileReader("src/main/InputSamples/Pools.csv")).withType(Pool.class).build().parse();
         Pool pool = pools.get(2);
 
         SettlementDateCalculator sdc = new SettlementDateCalculator();
         List<Date> settlementDates = sdc.calculate(loan, pool);
         Date settlementDate = settlementDates.get(0);
-        System.out.println(settlementDate);
 
-        BuyUpDownMultsSearch buyUpDownMultsSearch = new BuyUpDownMultsSearch();
+        BuyUpDownMultsLookup buyUpDownMultsSearch = new BuyUpDownMultsLookup();
         BuyUpDownMults buyUpDownMults = buyUpDownMultsSearch.getBuyUpDownMults(loan, pool, settlementDate);
 
         assertEquals(4.98, buyUpDownMults.getBuy_up_mults(), 0.0001);

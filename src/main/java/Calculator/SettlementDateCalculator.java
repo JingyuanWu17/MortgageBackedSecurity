@@ -1,8 +1,8 @@
 package Calculator;
 
-import Data.Loan;
-import Data.Pool;
-import Data.SettlementControlData;
+import InputData.Loan;
+import InputData.Pool;
+import InputData.SettlementControlData;
 import Lib.BusinessDayUtil;
 import Lib.ConfigLoader;
 import com.opencsv.CSVReader;
@@ -17,11 +17,10 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class SettlementDateCalculator {
-
     private String dateFormat;
     private String warehouseDays;
     private String agencyProcessDays;
-    private String settlementControlFileName;
+    private String settlementControlDataFileName;
     private String bmaFileName;
     private SimpleDateFormat sdf;
 
@@ -50,7 +49,7 @@ public class SettlementDateCalculator {
 
         List<SettlementControlData> settlementControls = null;
         try {
-            settlementControls = new CsvToBeanBuilder(new FileReader(settlementControlFileName)).withType(SettlementControlData.class).build().parse();
+            settlementControls = new CsvToBeanBuilder(new FileReader(settlementControlDataFileName)).withType(SettlementControlData.class).build().parse();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

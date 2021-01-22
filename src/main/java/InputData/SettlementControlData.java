@@ -1,4 +1,4 @@
-package Data;
+package InputData;
 
 import com.opencsv.bean.CsvBindByName;
 

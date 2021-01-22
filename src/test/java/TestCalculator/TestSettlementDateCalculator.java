@@ -1,8 +1,8 @@
 package TestCalculator;
 
 import Calculator.SettlementDateCalculator;
-import Data.Loan;
-import Data.Pool;
+import InputData.Loan;
+import InputData.Pool;
 import com.opencsv.bean.CsvToBeanBuilder;
 import org.junit.Test;
 
@@ -25,10 +25,10 @@ public class TestSettlementDateCalculator {
     @Test
     public void test_calculate() throws FileNotFoundException {
 
-        List<Loan> loans = new CsvToBeanBuilder(new FileReader("src/main/Input/Loans.csv")).withType(Loan.class).build().parse();
+        List<Loan> loans = new CsvToBeanBuilder(new FileReader("src/main/InputSamples/Loans.csv")).withType(Loan.class).build().parse();
         Loan loan = loans.get(0);
 
-        List<Pool> pools = new CsvToBeanBuilder(new FileReader("src/main/Input/Pools.csv")).withType(Pool.class).build().parse();
+        List<Pool> pools = new CsvToBeanBuilder(new FileReader("src/main/InputSamples/Pools.csv")).withType(Pool.class).build().parse();
         Pool pool = pools.get(2);
 
         SettlementDateCalculator sd = new SettlementDateCalculator();
@@ -43,10 +43,10 @@ public class TestSettlementDateCalculator {
     @Test
     public void test_calculate2() throws FileNotFoundException {
 
-        List<Loan> loans = new CsvToBeanBuilder(new FileReader("src/main/Input/Loans.csv")).withType(Loan.class).build().parse();
+        List<Loan> loans = new CsvToBeanBuilder(new FileReader("src/main/InputSamples/Loans.csv")).withType(Loan.class).build().parse();
         Loan loan = loans.get(1);
 
-        List<Pool> pools = new CsvToBeanBuilder(new FileReader("src/main/Input/Pools.csv")).withType(Pool.class).build().parse();
+        List<Pool> pools = new CsvToBeanBuilder(new FileReader("src/main/InputSamples/Pools.csv")).withType(Pool.class).build().parse();
         Pool pool = pools.get(1);
 
         SettlementDateCalculator sd = new SettlementDateCalculator();

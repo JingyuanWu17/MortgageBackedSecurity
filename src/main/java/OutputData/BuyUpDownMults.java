@@ -1,4 +1,4 @@
-package Data;
+package OutputData;
 
 public class BuyUpDownMults {
     private double buy_up_mults;

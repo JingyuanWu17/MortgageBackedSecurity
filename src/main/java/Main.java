@@ -1,6 +1,6 @@
 import Calculator.SettlementDateCalculator;
-import Data.Loan;
-import Data.Pool;
+import InputData.Loan;
+import InputData.Pool;
 import Engine.RuleEngine;
 import Lib.ConfigLoader;
 import com.opencsv.bean.CsvToBeanBuilder;

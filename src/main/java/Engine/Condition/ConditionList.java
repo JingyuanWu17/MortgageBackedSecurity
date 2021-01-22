@@ -1,7 +1,7 @@
 package Engine.Condition;
 
-import Data.Loan;
-import Data.Pool;
+import InputData.Loan;
+import InputData.Pool;
 
 import java.util.HashSet;
 import java.util.Set;

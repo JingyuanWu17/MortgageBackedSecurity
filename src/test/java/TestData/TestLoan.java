@@ -1,6 +1,6 @@
 package TestData;
 
-import Data.Loan;
+import InputData.Loan;
 import com.opencsv.bean.CsvToBeanBuilder;
 import org.junit.Test;
 
@@ -13,7 +13,7 @@ public class TestLoan {
 
     @Test
     public void test_creatObject() throws FileNotFoundException {
-        String fileName = "src/main/Input/Loans.csv";
+        String fileName = "src/main/InputSamples/Loans.csv";
 
         List<Loan> loans = new CsvToBeanBuilder(new FileReader(fileName)).withType(Loan.class).build().parse();
         Loan loan = loans.get(0);

@@ -1,6 +1,6 @@
 package TestData;
 
-import Data.Pool;
+import InputData.Pool;
 import com.opencsv.bean.CsvToBeanBuilder;
 import org.junit.Test;
 
@@ -11,7 +11,7 @@ public class TestPool {
 
     @Test
     public void test_creatObject() throws Exception {
-        String fileName = "src/main/Input/Pools.csv";
+        String fileName = "src/main/InputSamples/Pools.csv";
 
         List<Pool> pools = new CsvToBeanBuilder(new FileReader(fileName)).withType(Pool.class).build().parse();
         for (Pool pool : pools) {

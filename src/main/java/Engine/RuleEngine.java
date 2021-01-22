@@ -1,7 +1,7 @@
 package Engine;
 
-import Data.Loan;
-import Data.Pool;
+import InputData.Loan;
+import InputData.Pool;
 import Engine.Condition.Condition;
 import Engine.Condition.ConditionFactory;
 
@@ -11,7 +11,6 @@ import java.util.*;
 public class RuleEngine {
 
     /**
-     *
      * @param loan one specific loan
      * @param pools all available pools on market
      * @return eligible pools selected from pools for this loan

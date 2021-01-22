@@ -1,6 +1,6 @@
-package IO;
+package TestIO;
 
-import Data.Pool;
+import InputData.Pool;
 import com.opencsv.CSVReader;
 import com.opencsv.bean.CsvToBeanBuilder;
 import com.opencsv.exceptions.CsvException;
@@ -16,7 +16,7 @@ public class ReadCSVTest {
 
     @Test
     public void test_read() {
-        String fileName = "src/main/Input/Pools.csv";
+        String fileName = "src/main/InputSamples/Pools.csv";
         try (CSVReader reader = new CSVReader(new FileReader(fileName))) {
             reader.skip(1);
             List<String[]> r = reader.readAll();
@@ -28,7 +28,7 @@ public class ReadCSVTest {
 
     @Test
     public void test_creatObject() throws Exception{
-        String fileName = "src/main/Input/Pools.csv";
+        String fileName = "src/main/InputSamples/Pools.csv";
 
         List<Pool> pools = new CsvToBeanBuilder(new FileReader(fileName)).withType(Pool.class).build().parse();
         for(Pool pool : pools) {

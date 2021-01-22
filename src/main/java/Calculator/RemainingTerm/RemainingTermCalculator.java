@@ -1,6 +1,6 @@
 package Calculator.RemainingTerm;
 
-import Data.Loan;
+import InputData.Loan;
 
 import java.time.LocalDate;
 import java.time.Period;
