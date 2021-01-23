@@ -2,9 +2,9 @@ package Calculator.RemainingTerm;
 
 public class RemainingTermCalculatorFactory {
 
-    public static RemainingTermCalculator getRemainingTermCalculator(String calculationMethod) {
-        if (calculationMethod.equals("basic")) {
-            return new RemainingTermCalculator();
+    public static RemainingTermCalculatorBasic getRemainingTermCalculator(String calculationMethod) {
+        if (calculationMethod.equals("Basic")) {
+            return new RemainingTermCalculatorBasic();
         }
         return null;
     }

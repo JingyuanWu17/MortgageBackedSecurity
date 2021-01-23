@@ -13,6 +13,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class TestRuleEngine {
+
     @Test
     public void test_checkEngine() throws FileNotFoundException {
         List<Pool> pools = new CsvToBeanBuilder(new FileReader("src/main/InputSamples/Pools.csv")).withType(Pool.class).build().parse();

@@ -1,6 +1,6 @@
 package TestCalculator;
 
-import Calculator.SettlementDateCalculator;
+import Calculator.SettlementDate.SettlementDateCalculatorBasic;
 import InputData.Loan;
 import InputData.Pool;
 import com.opencsv.bean.CsvToBeanBuilder;
@@ -13,11 +13,11 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class TestSettlementDateCalculator {
+public class TestSettlementDateCalculatorBasic {
 
     @Test
     public void test_createObject() {
-        SettlementDateCalculator sd = new SettlementDateCalculator();
+        SettlementDateCalculatorBasic sd = new SettlementDateCalculatorBasic();
         assertEquals("2", sd.getAgencyProcessDays());
         assertEquals("2", sd.getWarehouseDays());
     }
@@ -31,7 +31,7 @@ public class TestSettlementDateCalculator {
         List<Pool> pools = new CsvToBeanBuilder(new FileReader("src/main/InputSamples/Pools.csv")).withType(Pool.class).build().parse();
         Pool pool = pools.get(2);
 
-        SettlementDateCalculator sd = new SettlementDateCalculator();
+        SettlementDateCalculatorBasic sd = new SettlementDateCalculatorBasic();
 
         List<Date> dates = sd.calculate(loan, pool);
         for (Date date : dates) {
@@ -49,7 +49,7 @@ public class TestSettlementDateCalculator {
         List<Pool> pools = new CsvToBeanBuilder(new FileReader("src/main/InputSamples/Pools.csv")).withType(Pool.class).build().parse();
         Pool pool = pools.get(1);
 
-        SettlementDateCalculator sd = new SettlementDateCalculator();
+        SettlementDateCalculatorBasic sd = new SettlementDateCalculatorBasic();
 
         List<Date> dates = sd.calculate(loan, pool);
         for (Date date : dates) {

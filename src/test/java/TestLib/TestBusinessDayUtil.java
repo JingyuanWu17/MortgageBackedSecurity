@@ -12,7 +12,6 @@ import java.util.Locale;
 
 public class TestBusinessDayUtil {
 
-
     @Test
     public void test_isBusinessDay() throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
@@ -38,4 +37,5 @@ public class TestBusinessDayUtil {
         nextDate = BusinessDayUtil.getNextBusinessDay(date);
         assertEquals(sdf.parse("2021-01-19"), nextDate);
     }
+
 }

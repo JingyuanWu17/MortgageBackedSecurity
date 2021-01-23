@@ -1,4 +1,4 @@
-package Calculator;
+package Calculator.SettlementDate;
 
 import InputData.Loan;
 import InputData.Pool;
@@ -16,7 +16,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class SettlementDateCalculator {
+public class SettlementDateCalculatorBasic extends SettlementDateCalculator {
+    private final static String configFileName = "src/main/resources/CalculatorConfig/SettlementDateCalculatorBasic.properties";
     private String dateFormat;
     private String warehouseDays;
     private String agencyProcessDays;
@@ -24,8 +25,8 @@ public class SettlementDateCalculator {
     private String bmaFileName;
     private SimpleDateFormat sdf;
 
-    public SettlementDateCalculator() {
-        ConfigLoader.load(SettlementDateCalculator.class, this, "src/main/resources/SettlementDateCalculator.properties");
+    public SettlementDateCalculatorBasic() {
+        ConfigLoader.load(SettlementDateCalculatorBasic.class, this, configFileName);
         sdf = new SimpleDateFormat(dateFormat, Locale.ENGLISH);
     }
 
@@ -41,6 +42,7 @@ public class SettlementDateCalculator {
     /**
      * @return All possible settlement dates of this loan under this pool
      */
+    @Override
     public List<Date> calculate(Loan loan, Pool pool) {
         List<Date> outputDates = new ArrayList<>();
 

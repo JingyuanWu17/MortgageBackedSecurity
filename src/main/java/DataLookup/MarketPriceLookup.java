@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 public class MarketPriceLookup extends TableLookup {
-    private final static String configFileName = "src/main/resources/MarketPriceLookup.properties";
+    private final static String configFileName = "src/main/resources/DataLookupConfig/MarketPriceLookup.properties";
     private String marketPriceDataFileName;
     private List<MarketPriceData> marketPriceDataList;
 
@@ -32,7 +32,7 @@ public class MarketPriceLookup extends TableLookup {
         for (MarketPriceData marketPriceData : marketPriceDataList) {
             if (stringMatch(loanPricerId, marketPriceData.getPool_name())
                     && stringMatch(packageTypeNumber, marketPriceData.getPool_id())
-                    && stringMatch(String.valueOf(MBSCoupon), marketPriceData.getCoupon())
+                    && doubleMatch(String.valueOf(MBSCoupon), marketPriceData.getCoupon())
                     && dateMatch(settlementDate, marketPriceData.getSettle_date())) {
                 marketPrice = Double.parseDouble(marketPriceData.getMarket_price());
                 break;

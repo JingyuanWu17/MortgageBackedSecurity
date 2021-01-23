@@ -1,6 +1,6 @@
 package TestDataLookup;
 
-import Calculator.SettlementDateCalculator;
+import Calculator.SettlementDate.SettlementDateCalculatorBasic;
 import InputData.Loan;
 import InputData.Pool;
 import DataLookup.MarketPriceLookup;
@@ -24,10 +24,9 @@ public class TestMarketPriceLookup {
         List<Pool> pools = new CsvToBeanBuilder(new FileReader("src/main/InputSamples/Pools.csv")).withType(Pool.class).build().parse();
         Pool pool = pools.get(2);
 
-        SettlementDateCalculator sdc = new SettlementDateCalculator();
+        SettlementDateCalculatorBasic sdc = new SettlementDateCalculatorBasic();
         List<Date> settlementDates = sdc.calculate(loan, pool);
         Date settlementDate = settlementDates.get(0);
-        System.out.println(settlementDate);
 
         MarketPriceLookup marketPriceLookup = new MarketPriceLookup();
 

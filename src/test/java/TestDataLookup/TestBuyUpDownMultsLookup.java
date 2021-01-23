@@ -1,7 +1,7 @@
 package TestDataLookup;
 
-import Calculator.SettlementDateCalculator;
-import OutputData.BuyUpDownMults;
+import Calculator.SettlementDate.SettlementDateCalculatorBasic;
+import InputData.BuyUpDownData;
 import InputData.Loan;
 import InputData.Pool;
 import DataLookup.BuyUpDownMultsLookup;
@@ -25,14 +25,14 @@ public class TestBuyUpDownMultsLookup {
         List<Pool> pools = new CsvToBeanBuilder(new FileReader("src/main/InputSamples/Pools.csv")).withType(Pool.class).build().parse();
         Pool pool = pools.get(2);
 
-        SettlementDateCalculator sdc = new SettlementDateCalculator();
+        SettlementDateCalculatorBasic sdc = new SettlementDateCalculatorBasic();
         List<Date> settlementDates = sdc.calculate(loan, pool);
         Date settlementDate = settlementDates.get(0);
 
         BuyUpDownMultsLookup buyUpDownMultsSearch = new BuyUpDownMultsLookup();
-        BuyUpDownMults buyUpDownMults = buyUpDownMultsSearch.getBuyUpDownMults(loan, pool, settlementDate);
+        BuyUpDownData buyUpDownData = buyUpDownMultsSearch.getBuyUpDownMults(loan, pool, settlementDate);
 
-        assertEquals(4.98, buyUpDownMults.getBuy_up_mults(), 0.0001);
-        assertEquals(6.38, buyUpDownMults.getBuy_down_mults(), 0.0001);
+        assertEquals("4.98", buyUpDownData.getBuy_up_mults());
+        assertEquals("6.38", buyUpDownData.getBuy_down_mults());
     }
 }

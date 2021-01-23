@@ -9,18 +9,16 @@ import java.util.Locale;
 public class TableLookup {
     private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 
-    /**
-     * @return true if str1 is equal to str2
-     */
     protected boolean stringMatch(String str1, String str2) {
         return str1.equals(str2);
     }
 
-    /**
-     * @return true if str1 contains str2
-     */
     protected boolean stringContains(String str1, String str2) {
         return str1.contains(str2);
+    }
+
+    protected boolean doubleMatch(String str1, String str2) {
+        return Double.parseDouble(str1) == Double.parseDouble(str2);
     }
 
     /**

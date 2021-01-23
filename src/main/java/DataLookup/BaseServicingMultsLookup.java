@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 public class BaseServicingMultsLookup extends TableLookup{
-    private final static String configFileName = "src/main/resources/BaseServicingMultsLookup.properties";
+    private final static String configFileName = "src/main/resources/DataLookupConfig/BaseServicingMultsLookup.properties";
     private String baseServicingMultsDataFileName;
     private List<BaseServicingMultsData> baseServicingMultsDataList;
 

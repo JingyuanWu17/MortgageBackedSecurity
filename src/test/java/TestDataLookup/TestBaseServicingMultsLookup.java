@@ -1,6 +1,6 @@
 package TestDataLookup;
 
-import Calculator.SettlementDateCalculator;
+import Calculator.SettlementDate.SettlementDateCalculatorBasic;
 import DataLookup.BaseServicingMultsLookup;
 import InputData.Loan;
 import InputData.Pool;
@@ -24,7 +24,7 @@ public class TestBaseServicingMultsLookup {
         List<Pool> pools = new CsvToBeanBuilder(new FileReader("src/main/InputSamples/Pools.csv")).withType(Pool.class).build().parse();
         Pool pool = pools.get(2);
 
-        SettlementDateCalculator sdc = new SettlementDateCalculator();
+        SettlementDateCalculatorBasic sdc = new SettlementDateCalculatorBasic();
         List<Date> settlementDates = sdc.calculate(loan, pool);
         Date settlementDate = settlementDates.get(0);
 
