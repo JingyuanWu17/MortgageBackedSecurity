@@ -1,13 +1,21 @@
 package DataLookup;
 
+import Configuration.ConfigFile;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-public class TableLookup {
-    private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+public abstract class TableLookup {
+    protected String dateFormat;
+    protected SimpleDateFormat sdf;
+
+    public TableLookup(ConfigFile cfg) {
+        dateFormat = cfg.getDateFormat();
+        sdf = new SimpleDateFormat(dateFormat, Locale.ENGLISH);
+    }
 
     protected boolean stringMatch(String str1, String str2) {
         return str1.equals(str2);

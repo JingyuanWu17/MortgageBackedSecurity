@@ -1,16 +1,16 @@
-import Calculator.MBSCoupon.MBSCouponCalculator;
-import Calculator.MBSCoupon.MBSCouponCalculatorFactory;
-import Calculator.SettlementDate.SettlementDateCalculator;
-import Calculator.SettlementDate.SettlementDateCalculatorFactory;
-import DataLookup.BaseServicingMultsLookup;
-import DataLookup.BuyUpDownMultsLookup;
-import DataLookup.FeeLookup;
-import DataLookup.MarketPriceLookup;
+import Calculator.MBSCoupon.MBSCouponCalc;
+import Calculator.SettlementDate.SettlementDateCalc;
+import Configuration.ConfigFile;
+import DataLookup.BaseServicingFee.BaseServicingFeeLookup;
+import DataLookup.BaseServicingMults.BaseServicingMultsLookup;
+import DataLookup.BuyUpDownMults.BuyUpDownMultsLookup;
+import DataLookup.MarketPrice.MarketPriceLookup;
 import InputData.BuyUpDownData;
 import InputData.Loan;
 import InputData.Pool;
 import Engine.RuleEngine;
-import Lib.ConfigLoader;
+import MBSFactory.Factory;
+import MBSFactory.FactoryProducer;
 import OutputData.Possibility;
 import com.opencsv.bean.CsvToBeanBuilder;
 
@@ -21,71 +21,68 @@ import java.util.Date;
 import java.util.List;
 
 public class Main {
-    private static String loanFileName;
-    private static String poolFileName;
-    private static String MBSCouponCalculationMethod;
-    private static String settlementDateCalculationMethod;
+    private static String loansFileName;
+    private static String poolsFileName;
 
     public static void main(String[] args) throws FileNotFoundException {
 
-        ConfigLoader.load(Main.class, null, "src/main/resources/Main.properties");
+        //Create configuration file object
+        ConfigFile cfg = new ConfigFile();
 
-        List<Loan> loans = new CsvToBeanBuilder(new FileReader(loanFileName)).withType(Loan.class).build().parse();
+        loansFileName = cfg.getLoansFileName();
+        poolsFileName = cfg.getPoolsFileName();
 
-        List<Pool> pools = new CsvToBeanBuilder(new FileReader(poolFileName)).withType(Pool.class).build().parse();
+        List<Loan> loans = new CsvToBeanBuilder(new FileReader(loansFileName)).withType(Loan.class).build().parse();
+
+        List<Pool> pools = new CsvToBeanBuilder(new FileReader(poolsFileName)).withType(Pool.class).build().parse();
 
         RuleEngine engine = new RuleEngine();
 
         List<Possibility> possibilities = new ArrayList<>();
 
-        //Iterate through loans
+        Factory factory = null;
+
         for (Loan loan : loans) {
 
             //Find all eligible pools for each loan
             List<Pool> eligPools = engine.run(loan, pools);
 
-            //Select the corresponding settlement date calculator according to the configuration file
-            SettlementDateCalculator settlementDateCalculator = SettlementDateCalculatorFactory.getSettlementDateCalculator(settlementDateCalculationMethod);
-
             for (Pool eligPool : eligPools) {
 
-                //Calculate a list of possible settlement dates for each eligible pool
-                List<Date> settlementDateList = settlementDateCalculator.calculate(loan, eligPool);
+                factory = FactoryProducer.getFactory("Calculator", "SettlementDate");
+                SettlementDateCalc sDateCalc = (SettlementDateCalc) factory.create(cfg, loan, eligPool);
+                List<Date> settlementDateList = sDateCalc.calculate(loan, eligPool);
 
-                //Select the corresponding MBSCoupon calculator according to the configuration file
-                MBSCouponCalculator mbsCouponCalculator = MBSCouponCalculatorFactory.getMBSCouponCalculator(MBSCouponCalculationMethod);
-
-                //Calculate a list of possible MBSCoupons for each eligible pool
-                List<Double> MBSCouponList = mbsCouponCalculator.calculate(loan, eligPool);
+                factory = FactoryProducer.getFactory("Calculator", "MBSCoupon");
+                MBSCouponCalc mbsCouponCalc = (MBSCouponCalc) factory.create(cfg, loan, eligPool);
+                List<Double> MBSCouponList = mbsCouponCalc.calculate(loan, eligPool);
 
                 for (Date settlementDate : settlementDateList) {
 
                     for (double MBSCoupon : MBSCouponList) {
 
-                        //According to pool, MBSCoupon and settlement date information, find the corresponding market price data
-                        MarketPriceLookup marketPriceLookup = new MarketPriceLookup();
-                        double marketPrice = marketPriceLookup.getMarketPrice(eligPool, MBSCoupon, settlementDate);
+                        factory = FactoryProducer.getFactory("DataLookup", "MarketPrice");
+                        MarketPriceLookup mPriceLookup = (MarketPriceLookup) factory.create(cfg, loan, eligPool);
+                        double marketPrice = mPriceLookup.lookup(eligPool, MBSCoupon, settlementDate);
 
                         //Skip this possibility if there is not market data
                         if (marketPrice == 0) continue;
 
-                        //According to pool, MBSCoupon and settlement date information, find the corresponding buy_up_mults and buy_down_mults data
-                        BuyUpDownMultsLookup buyUpDownMultsLookup = new BuyUpDownMultsLookup();
-                        BuyUpDownData buyUpDownData = buyUpDownMultsLookup.getBuyUpDownMults(loan, eligPool, settlementDate);
+                        factory = FactoryProducer.getFactory("DataLookup", "BuyUpDownMults");
+                        BuyUpDownMultsLookup bUDMultsLookup = (BuyUpDownMultsLookup) factory.create(cfg, loan, eligPool);
+                        BuyUpDownData buyUpDownData = bUDMultsLookup.lookup(loan, eligPool, settlementDate);
 
-                        //Use the buy_up_mults and buy_down_mults to calculate buy_up_price and buy_down_price
                         double buyUpPrice = Double.parseDouble(loan.getBuyUpRate()) * Double.parseDouble(buyUpDownData.getBuy_up_mults());
                         double buyDownPrice = Double.parseDouble(loan.getBuyDownRate()) * Double.parseDouble(buyUpDownData.getBuy_down_mults());
 
-                        //According to pool and settlement date information, find the corresponding base servicing mults data
-                        BaseServicingMultsLookup baseServicingMultsLookup = new BaseServicingMultsLookup();
-                        double baseServicingMults = baseServicingMultsLookup.getBaseServicingMults(eligPool, settlementDate);
+                        factory = FactoryProducer.getFactory("DataLookup", "BaseServicingMults");
+                        BaseServicingMultsLookup baseMultsLookup = (BaseServicingMultsLookup) factory.create(cfg, loan, eligPool);
+                        double baseServicingMults = baseMultsLookup.lookup(eligPool, settlementDate);
 
-                        //According to pool information, find the corresponding base servicing fee data
-                        FeeLookup feeLookup = new FeeLookup();
-                        double baseServicingFee = feeLookup.getBaseServicingFee(eligPool);
+                        factory = FactoryProducer.getFactory("DataLookup", "BaseServicingFee");
+                        BaseServicingFeeLookup baseFeeLookup = (BaseServicingFeeLookup) factory.create(cfg, loan, eligPool);
+                        double baseServicingFee = baseFeeLookup.lookup(eligPool);
 
-                        //Use base servicing fee and base servicing mults to calculate servicing price
                         double servicingPrice = baseServicingFee * baseServicingMults;
 
                         //Calculate the final price for this possibility
@@ -94,10 +91,8 @@ public class Main {
                         //Save all data related to this possibility in an object
                         Possibility possibility = new Possibility(loan, eligPool, settlementDate, MBSCoupon, marketPrice, buyUpDownData, baseServicingMults, baseServicingFee, price);
 
-                        //Print this possibility
                         System.out.println(possibility);
 
-                        //Add it to the result list
                         possibilities.add(possibility);
 
                     }

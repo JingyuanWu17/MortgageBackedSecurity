@@ -1,11 +1,11 @@
-package Calculator.RemainingTermCalc;
+package Calculator.RemainingTerm;
 
 import InputData.Loan;
 
 import java.time.LocalDate;
 import java.time.Period;
 
-public class RemainingTermV1 extends RemainingTerm {
+public class RemainingTermCalcV1 extends RemainingTermCalc {
 
     @Override
     public int calculate(Loan loan) {

@@ -1,6 +1,7 @@
 package TestLib;
 
-import Util.BusinessDay;
+import Configuration.ConfigFile;
+import Util.BusinessDayUtil;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -12,17 +13,21 @@ import java.util.Locale;
 
 public class TestBusinessDayUtil {
 
+    ConfigFile cfg = new ConfigFile();
+    BusinessDayUtil businessDayUtil = new BusinessDayUtil(cfg);
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+
     @Test
     public void test_isBusinessDay() throws ParseException {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+
         Date date = sdf.parse("2021-01-18");
-        assertFalse(BusinessDay.isBusinessDay(date));
+        assertFalse(businessDayUtil.isBusinessDay(date));
 
         date = sdf.parse("2021-01-17");
-        assertFalse(BusinessDay.isBusinessDay(date));
+        assertFalse(businessDayUtil.isBusinessDay(date));
 
         date = sdf.parse("2021-01-19");
-        assertTrue(BusinessDay.isBusinessDay(date));
+        assertTrue(businessDayUtil.isBusinessDay(date));
 
     }
 
@@ -30,11 +35,11 @@ public class TestBusinessDayUtil {
     public void test_getNextBusinessDay() throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
         Date date = sdf.parse("2021-01-17");
-        Date nextDate = BusinessDay.getNextBusinessDay(date);
+        Date nextDate = businessDayUtil.getNextBusinessDay(date);
         assertEquals(sdf.parse("2021-01-19"), nextDate);
 
         date = sdf.parse("2021-01-16");
-        nextDate = BusinessDay.getNextBusinessDay(date);
+        nextDate = businessDayUtil.getNextBusinessDay(date);
         assertEquals(sdf.parse("2021-01-19"), nextDate);
     }
 

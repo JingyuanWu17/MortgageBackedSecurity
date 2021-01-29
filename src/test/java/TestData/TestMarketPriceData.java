@@ -12,7 +12,7 @@ public class TestMarketPriceData {
 
     @Test
     public void test_creatObject() throws FileNotFoundException {
-        String fileName = "src/main/InputSamples/MarketPriceData.csv";
+        String fileName = "src/main/InputSamples/MarketPrice.csv";
         List<MarketPriceData> marketPriceDataList = new CsvToBeanBuilder(new FileReader(fileName)).withType(MarketPriceData.class).build().parse();
         System.out.println(marketPriceDataList.size());
         for (MarketPriceData marketPriceData : marketPriceDataList) {

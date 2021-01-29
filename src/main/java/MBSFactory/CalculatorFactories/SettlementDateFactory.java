@@ -11,7 +11,7 @@ import java.util.Map;
 public class SettlementDateFactory extends Factory {
 
     @Override
-    public Object create(ConfigFile cfg, Pool pool, Loan loan) {
+    public Object create(ConfigFile cfg, Loan loan, Pool pool) {
         Map agencyConfig = getAgencyConfig(cfg, pool);
         String version = (String) agencyConfig.get("SettlementDateCalc");
 
@@ -20,7 +20,6 @@ public class SettlementDateFactory extends Factory {
         }
 
         return null;
-
     }
 
 }

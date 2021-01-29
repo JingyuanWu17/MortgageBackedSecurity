@@ -7,15 +7,14 @@ import com.opencsv.bean.CsvToBeanBuilder;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-public class GuaranteeFeeV1 extends GuaranteeFee {
+public class GuaranteeFeeLookupV1 extends GuaranteeFeeLookup {
     private String dataFileName;
     private List<GuaranteeFeeData> dataList;
 
-    public GuaranteeFeeV1(ConfigFile cfg) {
+    public GuaranteeFeeLookupV1(ConfigFile cfg) {
         super(cfg);
         Map V1_cfg = (Map) cfg.getGuaranteeFeeLookup().get("V1");
         dataFileName = (String) V1_cfg.get("dataFileName");
@@ -28,12 +27,12 @@ public class GuaranteeFeeV1 extends GuaranteeFee {
     }
 
     @Override
-    public double lookup(Pool pool, Date settlementDate) {
+    public double lookup(Pool pool) {
         String loanPricerId = pool.getLoanPricerId();
 
         double gFee = 0;
         for (GuaranteeFeeData data : dataList) {
-            if (stringContains(loanPricerId, data.getAgency()) && dateMatch(settlementDate, data.getSettle_date())) {
+            if (stringContains(loanPricerId, data.getAgency())) {
                 gFee = Double.parseDouble(data.getGurantee_fee());
                 break;
             }

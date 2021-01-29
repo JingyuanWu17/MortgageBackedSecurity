@@ -1,17 +1,23 @@
 package Calculator.MBSCoupon;
 
 import Configuration.ConfigFile;
+import DataLookup.BaseServicingFee.BaseServicingFeeLookup;
+import DataLookup.GuaranteeFee.GuaranteeFeeLookup;
 import InputData.Loan;
 import InputData.Pool;
+import MBSFactory.Factory;
+import MBSFactory.FactoryProducer;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class MBSCouponV1 extends MBSCoupon {
+public class MBSCouponCalcV1 extends MBSCouponCalc {
+    private ConfigFile cfg;
     private String maxSpread;
 
-    public MBSCouponV1(ConfigFile cfg) {
+    public MBSCouponCalcV1(ConfigFile cfg) {
+        this.cfg = cfg;
         Map V1_cfg = (Map) cfg.getMBSCouponCalc().get("V1");
         maxSpread = (String) V1_cfg.get("maxSpread");
     }
@@ -38,14 +44,20 @@ public class MBSCouponV1 extends MBSCoupon {
     }
 
     private double getUpperBound(Loan loan, Pool pool) {
-        FeeLookup feeLookup = new FeeLookup();
+        Factory gGeeFactory = FactoryProducer.getFactory("DataLookup", "GuaranteeFee");
+        GuaranteeFeeLookup gfeeLookup = (GuaranteeFeeLookup) gGeeFactory.create(cfg, loan, pool);
+
+        Factory baseFeeFactory = FactoryProducer.getFactory("DataLookup", "BaseServicingFee");
+        BaseServicingFeeLookup baseFeeLookup = (BaseServicingFeeLookup) baseFeeFactory.create(cfg, loan, pool);
+
+        double gFee = gfeeLookup.lookup(pool);
+        double baseFee = baseFeeLookup.lookup(pool);
+
         double grossCoupon = Double.parseDouble(loan.getGrossCoupon());
-        double guaranteeFee = feeLookup.getGuaranteeFee(pool);
-        double baseServicingFee = feeLookup.getBaseServicingFee(pool);
         double buyUpRate = Double.parseDouble(loan.getBuyUpRate());
         double buyDownRate = Double.parseDouble(loan.getBuyDownRate());
 
-        return grossCoupon - guaranteeFee - baseServicingFee - buyUpRate - buyDownRate;
+        return grossCoupon - gFee - baseFee - buyUpRate - buyDownRate;
     }
 
     private double getLowerBound(Loan loan) {

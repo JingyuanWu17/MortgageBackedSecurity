@@ -1,0 +1,168 @@
+{
+  "dateFormat": "yyyy-MM-dd",
+  "loansFileName": "src/main/InputSamples/Loans.csv",
+  "poolsFileName": "src/main/InputSamples/Pools.csv",
+  "fhlmc": {
+    "GuaranteeFeeLookup": "V1",
+    "BaseServicingFeeLookup": "V1",
+    "BaseServicingMultsLookup": "V1",
+    "BuyUpDownMultsLookup": "V1",
+    "SettlementDateCalc": "V1",
+    "MBSCouponCalc": "V1"
+  },
+  "fnma": {
+    "GuaranteeFeeLookup": "V1",
+    "BaseServicingFeeLookup": "V1",
+    "BaseServicingMultsLookup": "V1",
+    "BuyUpDownMultsLookup": "V1",
+    "SettlementDateCalc": "V1",
+    "MBSCouponCalc": "V1"
+  },
+  "gnma": {
+    "GuaranteeFeeLookup": "V1",
+    "BaseServicingFeeLookup": "V1",
+    "BaseServicingMultsLookup": "V1",
+    "BuyUpDownMultsLookup": "V1",
+    "SettlementDateCalc": "V1",
+    "MBSCouponCalc": "V1"
+  },
+  "Pools": {
+    "10": {
+      "MarketPriceLookup": "V1",
+      "RemainingTermCalc": "V1"
+    },
+    "11": {
+      "MarketPriceLookup": "V1",
+      "RemainingTermCalc": "V1"
+    },
+    "12": {
+      "MarketPriceLookup": "V1",
+      "RemainingTermCalc": "V1"
+    },
+    "21": {
+      "MarketPriceLookup": "V1",
+      "RemainingTermCalc": "V1"
+    },
+    "22": {
+      "MarketPriceLookup": "V1",
+      "RemainingTermCalc": "V1"
+    },
+    "23": {
+      "MarketPriceLookup": "V1",
+      "RemainingTermCalc": "V1"
+    },
+    "24": {
+      "MarketPriceLookup": "V1",
+      "RemainingTermCalc": "V1"
+    },
+    "25": {
+      "MarketPriceLookup": "V1",
+      "RemainingTermCalc": "V1"
+    },
+    "2583": {
+      "MarketPriceLookup": "V1",
+      "RemainingTermCalc": "V1"
+    },
+    "2584": {
+      "MarketPriceLookup": "V1",
+      "RemainingTermCalc": "V1"
+    },
+    "2585": {
+      "MarketPriceLookup": "V1",
+      "RemainingTermCalc": "V1"
+    },
+    "3434": {
+      "MarketPriceLookup": "V1",
+      "RemainingTermCalc": "V1"
+    },
+    "3438": {
+      "MarketPriceLookup": "V1",
+      "RemainingTermCalc": "V1"
+    },
+    "3474": {
+      "MarketPriceLookup": "V1",
+      "RemainingTermCalc": "V1"
+    },
+    "3485": {
+      "MarketPriceLookup": "V1",
+      "RemainingTermCalc": "V1"
+    },
+    "3491": {
+      "MarketPriceLookup": "V1",
+      "RemainingTermCalc": "V1"
+    },
+    "3492": {
+      "MarketPriceLookup": "V1",
+      "RemainingTermCalc": "V1"
+    },
+    "3498": {
+      "MarketPriceLookup": "V1",
+      "RemainingTermCalc": "V1"
+    },
+    "3528": {
+      "MarketPriceLookup": "V1",
+      "RemainingTermCalc": "V1"
+    },
+    "3529": {
+      "MarketPriceLookup": "V1",
+      "RemainingTermCalc": "V1"
+    },
+    "3530": {
+      "MarketPriceLookup": "V1",
+      "RemainingTermCalc": "V1"
+    },
+    "3536": {
+      "MarketPriceLookup": "V1",
+      "RemainingTermCalc": "V1"
+    },
+    "3539": {
+      "MarketPriceLookup": "V1",
+      "RemainingTermCalc": "V1"
+    },
+    "849": {
+      "MarketPriceLookup": "V1",
+      "RemainingTermCalc": "V1"
+    }
+  },
+  "MBSCouponCalc": {
+    "V1": {
+      "maxSpread": "1.126"
+    }
+  },
+  "SettlementDateCalc": {
+    "V1": {
+      "warehouseDays": "2",
+      "agencyProcessDays": "2",
+      "dataFileName": "src/main/InputSamples/settlementControl.csv",
+      "BMAsFileName": "src/main/InputSamples/BMAs.csv"
+    }
+  },
+  "BaseServicingMultsLookup": {
+    "V1": {
+      "dataFileName": "src/main/InputSamples/BaseServicingMults.csv"
+    }
+  },
+  "BuyUpDownMultsLookup": {
+    "V1": {
+      "dataFileName": "src/main/InputSamples/BuyUpDownMults.csv"
+    }
+  },
+  "GuaranteeFeeLookup": {
+    "V1": {
+      "dataFileName": "src/main/InputSamples/GuaranteeFee.csv"
+    }
+  },
+  "BaseServicingFeeLookup": {
+    "V1": {
+      "dataFileName": "src/main/InputSamples/BaseServicingFee.csv"
+    }
+  },
+  "MarketPriceLookup": {
+    "V1": {
+      "dataFileName": "src/main/InputSamples/MarketPrice.csv"
+    }
+  },
+  "holidaysOfYears": {
+    "2021": "2021-01-01,2021-01-18,2021-05-31,2021-07-05,2021-09-06,2021-11-11,2021-11-25,2021-12-24,2021-12-31"
+  }
+}

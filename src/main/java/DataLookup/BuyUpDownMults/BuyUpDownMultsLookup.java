@@ -8,9 +8,9 @@ import InputData.Pool;
 
 import java.util.Date;
 
-public abstract class BuyUpDownMults extends TableLookup {
+public abstract class BuyUpDownMultsLookup extends TableLookup {
 
-    public BuyUpDownMults(ConfigFile cfg) {
+    public BuyUpDownMultsLookup(ConfigFile cfg) {
         super(cfg);
     }
 

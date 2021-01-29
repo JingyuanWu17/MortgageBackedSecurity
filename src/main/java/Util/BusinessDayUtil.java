@@ -3,20 +3,18 @@ package Util;
 import Configuration.ConfigFile;
 import org.apache.commons.lang3.time.DateUtils;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class BusinessDay {
+public class BusinessDayUtil {
     private String dateFormat;
     private Map holidaysOfYears;
     private Map<Integer, Set<Date>> yearHolidaysCache = new HashMap<>();
 
-    public BusinessDay(ConfigFile cfg) {
+    public BusinessDayUtil(ConfigFile cfg) {
         dateFormat = cfg.getDateFormat();
-        holidaysOfYears = (Map) cfg.getHolidaysOfYears();
+        holidaysOfYears = cfg.getHolidaysOfYears();
     }
 
     /**
@@ -65,11 +63,8 @@ public class BusinessDay {
         return tempCal.getTime();
     }
 
-    /**
-     * Read holidays of one specific year from configuration file
-     */
     private void readYearHolidays(int year) {
-        String yearHolidays = (String) holidaysOfYears.get(year);
+        String yearHolidays = (String) holidaysOfYears.get(String.valueOf(year));
         SimpleDateFormat sdf = new SimpleDateFormat(dateFormat, Locale.ENGLISH);
         String[] holidays = yearHolidays.split(",");
         Set<Date> holidaySet = new HashSet<>();

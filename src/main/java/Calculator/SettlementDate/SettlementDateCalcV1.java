@@ -1,4 +1,4 @@
-package Calculator.SettlementDateCalc;
+package Calculator.SettlementDate;
 
 import Configuration.ConfigFile;
 import InputData.Loan;
@@ -16,42 +16,26 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class SettlementDateV1 extends SettlementDate {
+public class SettlementDateCalcV1 extends SettlementDateCalc {
     private String warehouseDays;
     private String agencyProcessDays;
-    private String settlementControlDataFileName;
+    private String dataFileName;
     private String BMAsFileName;
     private SimpleDateFormat sdf;
     private BusinessDayUtil businessDayUtil;
 
-    public SettlementDateV1(ConfigFile cfg) {
-        Map settlementDateV1Config = (Map) cfg.getSettlementDateCalc().get("SettlementDateV1");
-        warehouseDays = (String) settlementDateV1Config.get("warehouseDays");
-        agencyProcessDays = (String) settlementDateV1Config.get("agencyProcessDays");
-        settlementControlDataFileName = (String) settlementDateV1Config.get("settlementControlDataFileName");
-        BMAsFileName = (String) settlementDateV1Config.get("BMAsFileName");
+    public SettlementDateCalcV1(ConfigFile cfg) {
+        Map V1_cfg = (Map) cfg.getSettlementDateCalc().get("V1");
+        warehouseDays = (String) V1_cfg.get("warehouseDays");
+        agencyProcessDays = (String) V1_cfg.get("agencyProcessDays");
+        dataFileName = (String) V1_cfg.get("dataFileName");
+        BMAsFileName = (String) V1_cfg.get("BMAsFileName");
         sdf = new SimpleDateFormat(cfg.getDateFormat(), Locale.ENGLISH);
         businessDayUtil = new BusinessDayUtil(cfg);
     }
 
-    public String getWarehouseDays() {
-        return warehouseDays;
-    }
-
-    public String getAgencyProcessDays() {
-        return agencyProcessDays;
-    }
-
-    public String getSettlementControlDataFileName() {
-        return settlementControlDataFileName;
-    }
-
-    public String getBMAsFileName() {
-        return BMAsFileName;
-    }
-
     /**
-     * @return All possible settlement dates of this loan under this pool
+     * @return All possible settlement dates for this loan under this pool
      */
     @Override
     public List<Date> calculate(Loan loan, Pool pool) {
@@ -62,7 +46,7 @@ public class SettlementDateV1 extends SettlementDate {
 
         List<SettlementControlData> settlementControls = null;
         try {
-            settlementControls = new CsvToBeanBuilder(new FileReader(settlementControlDataFileName)).withType(SettlementControlData.class).build().parse();
+            settlementControls = new CsvToBeanBuilder(new FileReader(dataFileName)).withType(SettlementControlData.class).build().parse();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -128,7 +112,6 @@ public class SettlementDateV1 extends SettlementDate {
         return outputDates;
     }
 
-
     private Date calculateEPSD(Loan loan) {
         Date res = null;
         String status = loan.getProcessStatus();
@@ -170,7 +153,6 @@ public class SettlementDateV1 extends SettlementDate {
         Date epsd = Calendar.getInstance().getTime();
         return businessDayUtil.isBusinessDay(epsd) ? epsd : businessDayUtil.getNextBusinessDay(epsd);
     }
-
 
     private Date getLockDate(Loan loan) {
         String lockDateStr = loan.getLockExpirationDate();
@@ -231,7 +213,6 @@ public class SettlementDateV1 extends SettlementDate {
     private SettlementControlData searchSettlementControl(List<SettlementControlData> settlementControls, Loan loan, Pool pool) {
         String loanStatus = loan.getProcessStatus();
         String poolFamilyId = getPoolFamilyId(pool);
-        settlementControls.get(1).getFirst_issue_pre_bma();
         for (SettlementControlData sc : settlementControls) {
             boolean b1 = sc.getPool_family_id().equals(poolFamilyId);
             boolean b2 = sc.getLoan_status().equals(loanStatus);
@@ -262,6 +243,5 @@ public class SettlementDateV1 extends SettlementDate {
 
         return calendar.getTime();
     }
-
 
 }

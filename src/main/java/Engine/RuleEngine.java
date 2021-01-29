@@ -2,8 +2,8 @@ package Engine;
 
 import InputData.Loan;
 import InputData.Pool;
-import Engine.Condition.Condition;
-import Engine.Condition.ConditionFactory;
+import Engine.MBSCondition.Condition;
+import Engine.MBSCondition.ConditionFactory;
 
 import java.lang.reflect.Field;
 import java.util.*;

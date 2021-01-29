@@ -16,7 +16,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class TestBaseServicingMultsLookup {
+public class TestBaseServicingMultsLookupV1 {
 
     @Test
     public void test_creatObject() throws FileNotFoundException {

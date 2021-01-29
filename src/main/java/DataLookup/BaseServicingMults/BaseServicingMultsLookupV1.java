@@ -1,4 +1,4 @@
-package DataLookup.BaseServicingMultsLookup;
+package DataLookup.BaseServicingMults;
 
 import Configuration.ConfigFile;
 import InputData.BaseServicingMultsData;
@@ -11,16 +11,17 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-public class BaseServicingMultsV1 extends BaseServicingMults {
+public class BaseServicingMultsLookupV1 extends BaseServicingMultsLookup {
+    private String dataFileName;
+    private List<BaseServicingMultsData> dataList;
 
-    private String baseServicingMultsDataFileName;
-    private List<BaseServicingMultsData> baseServicingMultsDataList;
+    public BaseServicingMultsLookupV1(ConfigFile cfg) {
+        super(cfg);
+        Map V1_cfg = (Map) cfg.getBaseServicingMultsLookup().get("V1");
+        dataFileName = (String) V1_cfg.get("dataFileName");
 
-    public BaseServicingMultsV1(ConfigFile cfg) {
-        Map baseServicingMultsV1Config = (Map) cfg.getBaseServicingMultsLookup().get("BaseServicingMultsV1");
-        baseServicingMultsDataFileName = (String) baseServicingMultsV1Config.get(baseServicingMultsDataFileName);
         try {
-            baseServicingMultsDataList = new CsvToBeanBuilder(new FileReader(baseServicingMultsDataFileName)).withType(BaseServicingMultsData.class).build().parse();
+            dataList = new CsvToBeanBuilder(new FileReader(dataFileName)).withType(BaseServicingMultsData.class).build().parse();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -32,11 +33,11 @@ public class BaseServicingMultsV1 extends BaseServicingMults {
         String packageTypeNumber = pool.getPackageTypeNumber();
 
         double baseMults = 0;
-        for (BaseServicingMultsData baseServicingMultsData : baseServicingMultsDataList) {
-            if (stringContains(loanPricerId, baseServicingMultsData.getAgency())
-                    && stringMatch(packageTypeNumber, baseServicingMultsData.getPool_id())
-                    && dateMatch(settlementDate, baseServicingMultsData.getIssue_date())) {
-                baseMults = Double.parseDouble(baseServicingMultsData.getBase_mults());
+        for (BaseServicingMultsData data : dataList) {
+            if (stringContains(loanPricerId, data.getAgency())
+                    && stringMatch(packageTypeNumber, data.getPool_id())
+                    && dateMatch(settlementDate, data.getIssue_date())) {
+                baseMults = Double.parseDouble(data.getBase_mults());
                 break;
             }
         }

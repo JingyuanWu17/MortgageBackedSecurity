@@ -6,9 +6,9 @@ import InputData.Pool;
 
 import java.util.Date;
 
-public abstract class MarketPrice extends TableLookup {
+public abstract class MarketPriceLookup extends TableLookup {
 
-    public MarketPrice(ConfigFile cfg) {
+    public MarketPriceLookup(ConfigFile cfg) {
         super(cfg);
     }
 

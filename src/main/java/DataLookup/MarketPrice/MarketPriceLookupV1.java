@@ -11,11 +11,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-public class MarketPriceV1 extends MarketPrice {
+public class MarketPriceLookupV1 extends MarketPriceLookup {
     private String dataFileName;
     private List<MarketPriceData> dataList;
 
-    public MarketPriceV1(ConfigFile cfg) {
+    public MarketPriceLookupV1(ConfigFile cfg) {
         super(cfg);
         Map V1_cfg = (Map) cfg.getMarketPriceLookup().get("V1");
         dataFileName = (String) V1_cfg.get("dataFileName");

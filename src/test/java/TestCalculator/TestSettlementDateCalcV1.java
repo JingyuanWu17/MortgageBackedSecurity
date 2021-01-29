@@ -14,7 +14,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class TestSettlementDateV1 {
+public class TestSettlementDateCalcV1 {
 
     ConfigFile cfg = new ConfigFile();
     String loansFileName = cfg.getLoansFileName();
@@ -37,9 +37,9 @@ public class TestSettlementDateV1 {
         List<Pool> pools = new CsvToBeanBuilder(new FileReader(poolsFileName)).withType(Pool.class).build().parse();
         Pool pool = pools.get(2);
 
-        SettlementDateCalcV1 sd = new SettlementDateCalcV1(cfg);
+        SettlementDateCalcV1 sdc = new SettlementDateCalcV1(cfg);
 
-        List<Date> dates = sd.calculate(loan, pool);
+        List<Date> dates = sdc.calculate(loan, pool);
         for (Date date : dates) {
             System.out.println(date);
         }
@@ -53,9 +53,9 @@ public class TestSettlementDateV1 {
         List<Pool> pools = new CsvToBeanBuilder(new FileReader(poolsFileName)).withType(Pool.class).build().parse();
         Pool pool = pools.get(1);
 
-        SettlementDateCalcV1 sd = new SettlementDateCalcV1(cfg);
+        SettlementDateCalcV1 sdc = new SettlementDateCalcV1(cfg);
 
-        List<Date> dates = sd.calculate(loan, pool);
+        List<Date> dates = sdc.calculate(loan, pool);
         for (Date date : dates) {
             System.out.println(date);
         }
