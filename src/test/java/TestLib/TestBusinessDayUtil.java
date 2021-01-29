@@ -1,6 +1,6 @@
 package TestLib;
 
-import Lib.BusinessDayUtil;
+import Util.BusinessDay;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -16,13 +16,13 @@ public class TestBusinessDayUtil {
     public void test_isBusinessDay() throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
         Date date = sdf.parse("2021-01-18");
-        assertFalse(BusinessDayUtil.isBusinessDay(date));
+        assertFalse(BusinessDay.isBusinessDay(date));
 
         date = sdf.parse("2021-01-17");
-        assertFalse(BusinessDayUtil.isBusinessDay(date));
+        assertFalse(BusinessDay.isBusinessDay(date));
 
         date = sdf.parse("2021-01-19");
-        assertTrue(BusinessDayUtil.isBusinessDay(date));
+        assertTrue(BusinessDay.isBusinessDay(date));
 
     }
 
@@ -30,11 +30,11 @@ public class TestBusinessDayUtil {
     public void test_getNextBusinessDay() throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
         Date date = sdf.parse("2021-01-17");
-        Date nextDate = BusinessDayUtil.getNextBusinessDay(date);
+        Date nextDate = BusinessDay.getNextBusinessDay(date);
         assertEquals(sdf.parse("2021-01-19"), nextDate);
 
         date = sdf.parse("2021-01-16");
-        nextDate = BusinessDayUtil.getNextBusinessDay(date);
+        nextDate = BusinessDay.getNextBusinessDay(date);
         assertEquals(sdf.parse("2021-01-19"), nextDate);
     }
 
