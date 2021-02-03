@@ -1,8 +1,8 @@
 package DataLookup.BaseServicingFee;
 
-import Configuration.ConfigFile;
+import Util.Configuration.ConfigFile;
 import DataLookup.TableLookup;
-import InputData.Pool;
+import MBSData.Pool;
 
 public abstract class BaseServicingFeeLookup extends TableLookup {
 

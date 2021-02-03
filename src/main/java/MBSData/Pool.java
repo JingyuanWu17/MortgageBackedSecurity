@@ -1,4 +1,4 @@
-package InputData;
+package MBSData;
 
 import com.opencsv.bean.CsvBindByName;
 

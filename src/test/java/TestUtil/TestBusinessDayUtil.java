@@ -1,7 +1,7 @@
-package TestLib;
+package TestUtil;
 
-import Configuration.ConfigFile;
-import Util.BusinessDayUtil;
+import Util.Configuration.ConfigFile;
+import Util.Date.BusinessDayUtil;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

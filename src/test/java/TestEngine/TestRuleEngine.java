@@ -1,8 +1,9 @@
 package TestEngine;
 
-import InputData.Loan;
-import InputData.Pool;
+import MBSData.Loan;
+import MBSData.Pool;
 import Engine.RuleEngine;
+import Util.MBSContainer.PoolsContainer;
 import com.opencsv.bean.CsvToBeanBuilder;
 import org.junit.Test;
 
@@ -25,10 +26,10 @@ public class TestRuleEngine {
 
         RuleEngine engine = new RuleEngine();
 
-        List<Pool> eligPools1 = engine.run(loan1, pools);
+        PoolsContainer eligPools1 = engine.run(loan1, pools);
         assertEquals(6, eligPools1.size());
 
-        List<Pool> eligPools2 = engine.run(loan2, pools);
+        PoolsContainer eligPools2 = engine.run(loan2, pools);
         assertEquals(7, eligPools2.size());
     }
 

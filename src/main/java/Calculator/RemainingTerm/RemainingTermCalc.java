@@ -1,6 +1,6 @@
 package Calculator.RemainingTerm;
 
-import InputData.Loan;
+import MBSData.Loan;
 
 public abstract class RemainingTermCalc {
 

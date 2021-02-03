@@ -1,6 +1,6 @@
 package TestData;
 
-import InputData.MarketPriceData;
+import MBSData.MarketPriceData;
 import com.opencsv.bean.CsvToBeanBuilder;
 import org.junit.Test;
 

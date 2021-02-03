@@ -1,7 +1,7 @@
 package Calculator.MBSCoupon;
 
-import InputData.Loan;
-import InputData.Pool;
+import MBSData.Loan;
+import MBSData.Pool;
 
 import java.util.List;
 

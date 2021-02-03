@@ -1,8 +1,8 @@
-package OutputData;
+package Output;
 
-import InputData.BuyUpDownData;
-import InputData.Loan;
-import InputData.Pool;
+import MBSData.BuyUpDownData;
+import MBSData.Loan;
+import MBSData.Pool;
 
 import java.util.Date;
 

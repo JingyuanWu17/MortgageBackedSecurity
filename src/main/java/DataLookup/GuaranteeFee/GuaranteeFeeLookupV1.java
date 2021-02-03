@@ -1,8 +1,8 @@
 package DataLookup.GuaranteeFee;
 
-import Configuration.ConfigFile;
-import InputData.GuaranteeFeeData;
-import InputData.Pool;
+import Util.Configuration.ConfigFile;
+import MBSData.GuaranteeFeeData;
+import MBSData.Pool;
 import com.opencsv.bean.CsvToBeanBuilder;
 
 import java.io.FileNotFoundException;

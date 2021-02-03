@@ -1,9 +1,10 @@
 package Engine;
 
-import InputData.Loan;
-import InputData.Pool;
+import MBSData.Loan;
+import MBSData.Pool;
 import Engine.MBSCondition.Condition;
 import Engine.MBSCondition.ConditionFactory;
+import Util.MBSContainer.PoolsContainer;
 
 import java.lang.reflect.Field;
 import java.util.*;
@@ -15,8 +16,8 @@ public class RuleEngine {
      * @param pools all available pools on market
      * @return eligible pools selected from pools for this loan
      */
-    public List<Pool> run(Loan loan, List<Pool> pools) {
-        List<Pool> eligPools = new ArrayList<>();
+    public PoolsContainer run(Loan loan, List<Pool> pools) {
+        PoolsContainer eligPools = new PoolsContainer();
         for (Pool pool : pools) {
             if (checkElig(loan, pool)) {
                 eligPools.add(pool);

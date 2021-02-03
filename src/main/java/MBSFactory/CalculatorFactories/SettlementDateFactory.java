@@ -1,9 +1,9 @@
 package MBSFactory.CalculatorFactories;
 
 import Calculator.SettlementDate.SettlementDateCalcV1;
-import Configuration.ConfigFile;
-import InputData.Loan;
-import InputData.Pool;
+import Util.Configuration.ConfigFile;
+import MBSData.Loan;
+import MBSData.Pool;
 import MBSFactory.Factory;
 
 import java.util.Map;

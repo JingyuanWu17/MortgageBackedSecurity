@@ -1,6 +1,6 @@
 package TestData;
 
-import InputData.Pool;
+import MBSData.Pool;
 import com.opencsv.bean.CsvToBeanBuilder;
 import org.junit.Test;
 

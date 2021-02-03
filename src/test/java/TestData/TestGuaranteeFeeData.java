@@ -1,6 +1,6 @@
 package TestData;
 
-import InputData.GuaranteeFeeData;
+import MBSData.GuaranteeFeeData;
 import com.opencsv.bean.CsvToBeanBuilder;
 import org.junit.Test;
 

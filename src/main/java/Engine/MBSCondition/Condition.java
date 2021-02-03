@@ -1,7 +1,7 @@
 package Engine.MBSCondition;
 
-import InputData.Loan;
-import InputData.Pool;
+import MBSData.Loan;
+import MBSData.Pool;
 
 import java.lang.reflect.Field;
 

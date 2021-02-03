@@ -1,71 +1,84 @@
 import Calculator.MBSCoupon.MBSCouponCalc;
 import Calculator.SettlementDate.SettlementDateCalc;
-import Configuration.ConfigFile;
+import Util.MBSCache.Cache;
+import Util.Configuration.ConfigFile;
 import DataLookup.BaseServicingFee.BaseServicingFeeLookup;
 import DataLookup.BaseServicingMults.BaseServicingMultsLookup;
 import DataLookup.BuyUpDownMults.BuyUpDownMultsLookup;
 import DataLookup.MarketPrice.MarketPriceLookup;
-import InputData.BuyUpDownData;
-import InputData.Loan;
-import InputData.Pool;
+import MBSData.BuyUpDownData;
+import MBSData.Loan;
+import MBSData.Pool;
 import Engine.RuleEngine;
 import MBSFactory.Factory;
 import MBSFactory.FactoryProducer;
-import OutputData.Possibility;
+import Output.Possibility;
+import Util.MBSCache.MBSCouponCache;
+import Util.MBSCache.SettlementDateCache;
+import Util.MBSContainer.PoolsContainer;
 import com.opencsv.bean.CsvToBeanBuilder;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class Main {
-    private static String loansFileName;
-    private static String poolsFileName;
 
     public static void main(String[] args) throws FileNotFoundException {
 
         //Create configuration file object
         ConfigFile cfg = new ConfigFile();
 
-        loansFileName = cfg.getLoansFileName();
-        poolsFileName = cfg.getPoolsFileName();
+        List<Loan> loans = new CsvToBeanBuilder(new FileReader(cfg.getLoansFileName())).withType(Loan.class).build().parse();
+        List<Pool> pools = new CsvToBeanBuilder(new FileReader(cfg.getPoolsFileName())).withType(Pool.class).build().parse();
 
-        List<Loan> loans = new CsvToBeanBuilder(new FileReader(loansFileName)).withType(Loan.class).build().parse();
-
-        List<Pool> pools = new CsvToBeanBuilder(new FileReader(poolsFileName)).withType(Pool.class).build().parse();
+        Cache<List<Date>> settlementDateCache = new SettlementDateCache();
+        Cache<List<Double>> mbsCouponCache = new MBSCouponCache();
 
         RuleEngine engine = new RuleEngine();
-
-        List<Possibility> possibilities = new ArrayList<>();
 
         Factory factory = null;
 
         for (Loan loan : loans) {
 
+            List<Possibility> loanPossibilities = new ArrayList<>();
+
             //Find all eligible pools for each loan
-            List<Pool> eligPools = engine.run(loan, pools);
+            PoolsContainer eligPools = engine.run(loan, pools);
 
-            for (Pool eligPool : eligPools) {
+            Iterator<Pool> iterator= eligPools.iterator();
+            while (iterator.hasNext()) {
+                Pool eligPool = iterator.next();
 
-                factory = FactoryProducer.getFactory("Calculator", "SettlementDate");
-                SettlementDateCalc sDateCalc = (SettlementDateCalc) factory.create(cfg, loan, eligPool);
-                List<Date> settlementDateList = sDateCalc.calculate(loan, eligPool);
+                List<Date> settlementDateList;
+                if (settlementDateCache.containsKey(loan, eligPool)) {
+                    settlementDateList = settlementDateCache.get(loan, eligPool);
+                } else {
+                    factory = FactoryProducer.getFactory("Calculator", "SettlementDate");
+                    SettlementDateCalc sDateCalc = (SettlementDateCalc) factory.create(cfg, loan, eligPool);
+                    settlementDateList = sDateCalc.calculate(loan, eligPool);
+                    settlementDateCache.put(loan, eligPool, settlementDateList);
+                }
 
-                factory = FactoryProducer.getFactory("Calculator", "MBSCoupon");
-                MBSCouponCalc mbsCouponCalc = (MBSCouponCalc) factory.create(cfg, loan, eligPool);
-                List<Double> MBSCouponList = mbsCouponCalc.calculate(loan, eligPool);
+                List<Double> mbsCouponList;
+                if (mbsCouponCache.containsKey(loan, eligPool)) {
+                    mbsCouponList = mbsCouponCache.get(loan, eligPool);
+                } else {
+                    factory = FactoryProducer.getFactory("Calculator", "MBSCoupon");
+                    MBSCouponCalc mbsCouponCalc = (MBSCouponCalc) factory.create(cfg, loan, eligPool);
+                    mbsCouponList = mbsCouponCalc.calculate(loan, eligPool);
+                    mbsCouponCache.put(loan, eligPool, mbsCouponList);
+                }
 
                 for (Date settlementDate : settlementDateList) {
 
-                    for (double MBSCoupon : MBSCouponList) {
+                    for (double MBSCoupon : mbsCouponList) {
 
                         factory = FactoryProducer.getFactory("DataLookup", "MarketPrice");
                         MarketPriceLookup mPriceLookup = (MarketPriceLookup) factory.create(cfg, loan, eligPool);
                         double marketPrice = mPriceLookup.lookup(eligPool, MBSCoupon, settlementDate);
 
-                        //Skip this possibility if there is not market data
+                        //Skip this possibility if there is not market price data
                         if (marketPrice == 0) continue;
 
                         factory = FactoryProducer.getFactory("DataLookup", "BuyUpDownMults");
@@ -91,13 +104,18 @@ public class Main {
                         //Save all data related to this possibility in an object
                         Possibility possibility = new Possibility(loan, eligPool, settlementDate, MBSCoupon, marketPrice, buyUpDownData, baseServicingMults, baseServicingFee, price);
 
-                        System.out.println(possibility);
-
-                        possibilities.add(possibility);
+                        loanPossibilities.add(possibility);
 
                     }
                 }
             }
+
+            loanPossibilities.sort((a, b) -> Double.compare(b.getPrice(), a.getPrice()));
+            //Print the rank of the possibility according to the price from high to low
+            for (Possibility p : loanPossibilities) {
+                System.out.println(p);
+            }
+
         }
     }
 }

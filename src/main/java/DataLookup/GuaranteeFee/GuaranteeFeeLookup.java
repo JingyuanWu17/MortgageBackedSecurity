@@ -1,8 +1,8 @@
 package DataLookup.GuaranteeFee;
 
-import Configuration.ConfigFile;
+import Util.Configuration.ConfigFile;
 import DataLookup.TableLookup;
-import InputData.Pool;
+import MBSData.Pool;
 
 public abstract class GuaranteeFeeLookup extends TableLookup {
 

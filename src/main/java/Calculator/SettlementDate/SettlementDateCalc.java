@@ -1,7 +1,7 @@
 package Calculator.SettlementDate;
 
-import InputData.Loan;
-import InputData.Pool;
+import MBSData.Loan;
+import MBSData.Pool;
 
 import java.util.Date;
 import java.util.List;

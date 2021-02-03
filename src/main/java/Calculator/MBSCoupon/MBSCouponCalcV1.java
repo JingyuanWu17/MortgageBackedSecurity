@@ -1,10 +1,10 @@
 package Calculator.MBSCoupon;
 
-import Configuration.ConfigFile;
+import Util.Configuration.ConfigFile;
 import DataLookup.BaseServicingFee.BaseServicingFeeLookup;
 import DataLookup.GuaranteeFee.GuaranteeFeeLookup;
-import InputData.Loan;
-import InputData.Pool;
+import MBSData.Loan;
+import MBSData.Pool;
 import MBSFactory.Factory;
 import MBSFactory.FactoryProducer;
 

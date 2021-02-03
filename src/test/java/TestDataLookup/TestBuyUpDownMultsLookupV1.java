@@ -1,12 +1,12 @@
 package TestDataLookup;
 
 import Calculator.SettlementDate.SettlementDateCalcV1;
-import Configuration.ConfigFile;
+import Util.Configuration.ConfigFile;
 import DataLookup.BuyUpDownMults.BuyUpDownMultsLookup;
 import DataLookup.BuyUpDownMults.BuyUpDownMultsLookupV1;
-import InputData.BuyUpDownData;
-import InputData.Loan;
-import InputData.Pool;
+import MBSData.BuyUpDownData;
+import MBSData.Loan;
+import MBSData.Pool;
 import com.opencsv.bean.CsvToBeanBuilder;
 import org.junit.Test;
 

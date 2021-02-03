@@ -1,10 +1,10 @@
 package DataLookup.BuyUpDownMults;
 
 import Calculator.RemainingTerm.RemainingTermCalc;
-import Configuration.ConfigFile;
-import InputData.BuyUpDownData;
-import InputData.Loan;
-import InputData.Pool;
+import Util.Configuration.ConfigFile;
+import MBSData.BuyUpDownData;
+import MBSData.Loan;
+import MBSData.Pool;
 import MBSFactory.Factory;
 import MBSFactory.FactoryProducer;
 import com.opencsv.bean.CsvToBeanBuilder;

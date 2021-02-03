@@ -1,6 +1,6 @@
-package Util;
+package Util.Date;
 
-import Configuration.ConfigFile;
+import Util.Configuration.ConfigFile;
 import org.apache.commons.lang3.time.DateUtils;
 
 import java.text.ParseException;

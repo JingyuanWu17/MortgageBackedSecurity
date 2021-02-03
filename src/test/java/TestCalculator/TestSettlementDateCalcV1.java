@@ -1,9 +1,9 @@
 package TestCalculator;
 
 import Calculator.SettlementDate.SettlementDateCalcV1;
-import Configuration.ConfigFile;
-import InputData.Loan;
-import InputData.Pool;
+import Util.Configuration.ConfigFile;
+import MBSData.Loan;
+import MBSData.Pool;
 import com.opencsv.bean.CsvToBeanBuilder;
 import org.junit.Test;
 
@@ -11,8 +11,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Date;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 public class TestSettlementDateCalcV1 {
 

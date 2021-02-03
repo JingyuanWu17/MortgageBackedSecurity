@@ -26,104 +26,152 @@
     "SettlementDateCalc": "V1",
     "MBSCouponCalc": "V1"
   },
-  "Pools": {
-    "10": {
-      "MarketPriceLookup": "V1",
-      "RemainingTermCalc": "V1"
+  "Pools": [
+    {
+      "10": {
+        "MarketPriceLookup": "V1",
+        "RemainingTermCalc": "V1"
+      }
     },
-    "11": {
-      "MarketPriceLookup": "V1",
-      "RemainingTermCalc": "V1"
+    {
+      "11": {
+        "MarketPriceLookup": "V1",
+        "RemainingTermCalc": "V1"
+      }
     },
-    "12": {
-      "MarketPriceLookup": "V1",
-      "RemainingTermCalc": "V1"
+    {
+      "12": {
+        "MarketPriceLookup": "V1",
+        "RemainingTermCalc": "V1"
+      }
     },
-    "21": {
-      "MarketPriceLookup": "V1",
-      "RemainingTermCalc": "V1"
+    {
+      "21": {
+        "MarketPriceLookup": "V1",
+        "RemainingTermCalc": "V1"
+      }
     },
-    "22": {
-      "MarketPriceLookup": "V1",
-      "RemainingTermCalc": "V1"
+    {
+      "22": {
+        "MarketPriceLookup": "V1",
+        "RemainingTermCalc": "V1"
+      }
     },
-    "23": {
-      "MarketPriceLookup": "V1",
-      "RemainingTermCalc": "V1"
+    {
+      "23": {
+        "MarketPriceLookup": "V1",
+        "RemainingTermCalc": "V1"
+      }
     },
-    "24": {
-      "MarketPriceLookup": "V1",
-      "RemainingTermCalc": "V1"
+    {
+      "24": {
+        "MarketPriceLookup": "V1",
+        "RemainingTermCalc": "V1"
+      }
     },
-    "25": {
-      "MarketPriceLookup": "V1",
-      "RemainingTermCalc": "V1"
+    {
+      "25": {
+        "MarketPriceLookup": "V1",
+        "RemainingTermCalc": "V1"
+      }
     },
-    "2583": {
-      "MarketPriceLookup": "V1",
-      "RemainingTermCalc": "V1"
+    {
+      "2583": {
+        "MarketPriceLookup": "V1",
+        "RemainingTermCalc": "V1"
+      }
     },
-    "2584": {
-      "MarketPriceLookup": "V1",
-      "RemainingTermCalc": "V1"
+    {
+      "2584": {
+        "MarketPriceLookup": "V1",
+        "RemainingTermCalc": "V1"
+      }
     },
-    "2585": {
-      "MarketPriceLookup": "V1",
-      "RemainingTermCalc": "V1"
+    {
+      "2585": {
+        "MarketPriceLookup": "V1",
+        "RemainingTermCalc": "V1"
+      }
     },
-    "3434": {
-      "MarketPriceLookup": "V1",
-      "RemainingTermCalc": "V1"
+    {
+      "3434": {
+        "MarketPriceLookup": "V1",
+        "RemainingTermCalc": "V1"
+      }
     },
-    "3438": {
-      "MarketPriceLookup": "V1",
-      "RemainingTermCalc": "V1"
+    {
+      "3438": {
+        "MarketPriceLookup": "V1",
+        "RemainingTermCalc": "V1"
+      }
     },
-    "3474": {
-      "MarketPriceLookup": "V1",
-      "RemainingTermCalc": "V1"
+    {
+      "3474": {
+        "MarketPriceLookup": "V1",
+        "RemainingTermCalc": "V1"
+      }
     },
-    "3485": {
-      "MarketPriceLookup": "V1",
-      "RemainingTermCalc": "V1"
+    {
+      "3485": {
+        "MarketPriceLookup": "V1",
+        "RemainingTermCalc": "V1"
+      }
     },
-    "3491": {
-      "MarketPriceLookup": "V1",
-      "RemainingTermCalc": "V1"
+    {
+      "3491": {
+        "MarketPriceLookup": "V1",
+        "RemainingTermCalc": "V1"
+      }
     },
-    "3492": {
-      "MarketPriceLookup": "V1",
-      "RemainingTermCalc": "V1"
+    {
+      "3492": {
+        "MarketPriceLookup": "V1",
+        "RemainingTermCalc": "V1"
+      }
     },
-    "3498": {
-      "MarketPriceLookup": "V1",
-      "RemainingTermCalc": "V1"
+    {
+      "3498": {
+        "MarketPriceLookup": "V1",
+        "RemainingTermCalc": "V1"
+      }
     },
-    "3528": {
-      "MarketPriceLookup": "V1",
-      "RemainingTermCalc": "V1"
+    {
+      "3528": {
+        "MarketPriceLookup": "V1",
+        "RemainingTermCalc": "V1"
+      }
     },
-    "3529": {
-      "MarketPriceLookup": "V1",
-      "RemainingTermCalc": "V1"
+    {
+      "3529": {
+        "MarketPriceLookup": "V1",
+        "RemainingTermCalc": "V1"
+      }
     },
-    "3530": {
-      "MarketPriceLookup": "V1",
-      "RemainingTermCalc": "V1"
+    {
+      "3530": {
+        "MarketPriceLookup": "V1",
+        "RemainingTermCalc": "V1"
+      }
     },
-    "3536": {
-      "MarketPriceLookup": "V1",
-      "RemainingTermCalc": "V1"
+    {
+      "3536": {
+        "MarketPriceLookup": "V1",
+        "RemainingTermCalc": "V1"
+      }
     },
-    "3539": {
-      "MarketPriceLookup": "V1",
-      "RemainingTermCalc": "V1"
+    {
+      "3539": {
+        "MarketPriceLookup": "V1",
+        "RemainingTermCalc": "V1"
+      }
     },
-    "849": {
-      "MarketPriceLookup": "V1",
-      "RemainingTermCalc": "V1"
+    {
+      "849": {
+        "MarketPriceLookup": "V1",
+        "RemainingTermCalc": "V1"
+      }
     }
-  },
+  ],
   "MBSCouponCalc": {
     "V1": {
       "maxSpread": "1.126"

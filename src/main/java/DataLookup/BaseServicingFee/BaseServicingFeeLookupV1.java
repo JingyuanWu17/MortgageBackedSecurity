@@ -1,8 +1,8 @@
 package DataLookup.BaseServicingFee;
 
-import Configuration.ConfigFile;
-import InputData.BaseServicingFeeData;
-import InputData.Pool;
+import Util.Configuration.ConfigFile;
+import MBSData.BaseServicingFeeData;
+import MBSData.Pool;
 import com.opencsv.bean.CsvToBeanBuilder;
 
 import java.io.FileNotFoundException;

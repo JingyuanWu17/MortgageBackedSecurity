@@ -1,6 +1,6 @@
 package TestData;
 
-import InputData.Loan;
+import MBSData.Loan;
 import com.opencsv.bean.CsvToBeanBuilder;
 import org.junit.Test;
 

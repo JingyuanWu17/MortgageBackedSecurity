@@ -1,6 +1,6 @@
 package DataLookup;
 
-import Configuration.ConfigFile;
+import Util.Configuration.ConfigFile;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

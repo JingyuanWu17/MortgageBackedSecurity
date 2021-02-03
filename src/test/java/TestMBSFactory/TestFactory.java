@@ -2,9 +2,9 @@ package TestMBSFactory;
 
 import Calculator.MBSCoupon.MBSCouponCalc;
 import Calculator.RemainingTerm.RemainingTermCalc;
-import Configuration.ConfigFile;
-import InputData.Loan;
-import InputData.Pool;
+import Util.Configuration.ConfigFile;
+import MBSData.Loan;
+import MBSData.Pool;
 import MBSFactory.CalculatorFactories.MBSCouponFactory;
 import MBSFactory.CalculatorFactories.RemainingTermFactory;
 import com.opencsv.bean.CsvToBeanBuilder;

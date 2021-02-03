@@ -1,5 +1,6 @@
-package Configuration;
+package Util.Configuration;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -7,8 +8,7 @@ import org.json.simple.parser.ParseException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Field;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class ConfigFile {
 
@@ -47,17 +47,6 @@ public class ConfigFile {
     private JSONObject configObj;
 
     public ConfigFile() {
-        fhlmc = new HashMap();
-        fnma = new HashMap();
-        gnma = new HashMap();
-        Pools = new HashMap();
-        SettlementDateCalc = new HashMap();
-        BaseServicingMultsLookup = new HashMap();
-        BuyUpDownMultsLookup = new HashMap();
-        GuaranteeFeeLookup = new HashMap();
-        BaseServicingFeeLookup = new HashMap();
-        MarketPriceLookup = new HashMap();
-        holidaysOfYears = new HashMap();
 
         JSONParser parser = new JSONParser();
         try {
@@ -85,12 +74,14 @@ public class ConfigFile {
         if (configObj.get(fieldName) instanceof String) {
             field.set(this, configObj.get(fieldName));
         } else if (configObj.get(fieldName) instanceof JSONObject) {
-            field.set(this, buildFieldMap(configObj.get(fieldName)));
+            field.set(this, buildMap(configObj.get(fieldName)));
+        } else if (configObj.get(fieldName) instanceof JSONArray) {
+            field.set(this, buildListMap(configObj.get(fieldName)));
         }
     }
 
     //Build the map recursively
-    private Map buildFieldMap(Object object) {
+    private Map buildMap(Object object) {
         JSONObject jsonObject = (JSONObject) object;
         Map map = new HashMap();
         for (Object obj : jsonObject.keySet()) {
@@ -98,7 +89,20 @@ public class ConfigFile {
             if (jsonObject.get(key) instanceof String) {
                 map.put(key, jsonObject.get(key));
             } else if (jsonObject.get(key) instanceof JSONObject) {
-                map.put(key, buildFieldMap(jsonObject.get(key)));
+                map.put(key, buildMap(jsonObject.get(key)));
+            }
+        }
+        return map;
+    }
+
+    private Map buildListMap(Object object) {
+        JSONArray jsonArray = (JSONArray) object;
+        Map map = new LinkedHashMap();
+        for (Object obj : jsonArray) {
+            JSONObject jsonObject = (JSONObject) obj;
+            for (Object keyObj : jsonObject.keySet()) {
+                String key = (String) keyObj;
+                map.put(key, buildMap(jsonObject.get(key)));
             }
         }
         return map;

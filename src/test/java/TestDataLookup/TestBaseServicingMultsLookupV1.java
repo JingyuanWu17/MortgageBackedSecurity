@@ -1,11 +1,11 @@
 package TestDataLookup;
 
 import Calculator.SettlementDate.SettlementDateCalcV1;
-import Configuration.ConfigFile;
+import Util.Configuration.ConfigFile;
 import DataLookup.BaseServicingMults.BaseServicingMultsLookup;
 import DataLookup.BaseServicingMults.BaseServicingMultsLookupV1;
-import InputData.Loan;
-import InputData.Pool;
+import MBSData.Loan;
+import MBSData.Pool;
 import com.opencsv.bean.CsvToBeanBuilder;
 import org.junit.Test;
 

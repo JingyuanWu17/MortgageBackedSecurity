@@ -1,10 +1,10 @@
 package DataLookup.BuyUpDownMults;
 
-import Configuration.ConfigFile;
+import Util.Configuration.ConfigFile;
 import DataLookup.TableLookup;
-import InputData.BuyUpDownData;
-import InputData.Loan;
-import InputData.Pool;
+import MBSData.BuyUpDownData;
+import MBSData.Loan;
+import MBSData.Pool;
 
 import java.util.Date;
 

@@ -1,8 +1,8 @@
 package MBSFactory;
 
-import Configuration.ConfigFile;
-import InputData.Loan;
-import InputData.Pool;
+import Util.Configuration.ConfigFile;
+import MBSData.Loan;
+import MBSData.Pool;
 
 import java.util.Map;
 

@@ -1,8 +1,8 @@
 package DataLookup.MarketPrice;
 
-import Configuration.ConfigFile;
-import InputData.MarketPriceData;
-import InputData.Pool;
+import Util.Configuration.ConfigFile;
+import MBSData.MarketPriceData;
+import MBSData.Pool;
 import com.opencsv.bean.CsvToBeanBuilder;
 
 import java.io.FileNotFoundException;

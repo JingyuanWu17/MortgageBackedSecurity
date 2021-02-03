@@ -1,8 +1,8 @@
 package DataLookup.BaseServicingMults;
 
-import Configuration.ConfigFile;
-import InputData.BaseServicingMultsData;
-import InputData.Pool;
+import Util.Configuration.ConfigFile;
+import MBSData.BaseServicingMultsData;
+import MBSData.Pool;
 import com.opencsv.bean.CsvToBeanBuilder;
 
 import java.io.FileNotFoundException;
