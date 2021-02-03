@@ -46,7 +46,7 @@ public class Main {
             //Find all eligible pools for each loan
             PoolsContainer eligPools = engine.run(loan, pools);
 
-            Iterator<Pool> iterator= eligPools.iterator();
+            Iterator<Pool> iterator = eligPools.iterator();
             while (iterator.hasNext()) {
                 Pool eligPool = iterator.next();
 
