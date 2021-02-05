@@ -34,6 +34,5 @@ public class ReadCSVTest {
         for(Pool pool : pools) {
             System.out.println(pool.getLoanPricerId());
         }
-
     }
 }

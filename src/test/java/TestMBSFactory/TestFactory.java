@@ -10,6 +10,8 @@ import MBSFactory.CalculatorFactories.RemainingTermFactory;
 import com.opencsv.bean.CsvToBeanBuilder;
 import org.junit.Test;
 
+import static org.junit.Assert.*;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.List;
@@ -32,17 +34,17 @@ public class TestFactory {
     public void test_MBSCouponFactory() {
         MBSCouponFactory mbsCouponFactory = new MBSCouponFactory();
         MBSCouponCalc mbsCouponCalc = (MBSCouponCalc) mbsCouponFactory.create(cfg, loan, pool);
-        System.out.println(mbsCouponCalc.getClass().getName());
 
+        String className = mbsCouponCalc.getClass().getName();
+        assertEquals("Calculator.MBSCoupon.MBSCouponCalcV1", className);
     }
 
     @Test
     public void test_RemainingTermFactory() {
         RemainingTermFactory remainingTermFactory = new RemainingTermFactory();
         RemainingTermCalc remainingTermCalc = (RemainingTermCalc) remainingTermFactory.create(cfg, loan, pool);
-        System.out.println(remainingTermCalc.calculate(loan));
 
+        String className = remainingTermCalc.getClass().getName();
+        assertEquals("Calculator.RemainingTerm.RemainingTermCalcV1", className);
     }
-
-
 }

@@ -19,7 +19,6 @@ public class TestBusinessDayUtil {
 
     @Test
     public void test_isBusinessDay() throws ParseException {
-
         Date date = sdf.parse("2021-01-18");
         assertFalse(businessDayUtil.isBusinessDay(date));
 
@@ -28,12 +27,10 @@ public class TestBusinessDayUtil {
 
         date = sdf.parse("2021-01-19");
         assertTrue(businessDayUtil.isBusinessDay(date));
-
     }
 
     @Test
     public void test_getNextBusinessDay() throws ParseException {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
         Date date = sdf.parse("2021-01-17");
         Date nextDate = businessDayUtil.getNextBusinessDay(date);
         assertEquals(sdf.parse("2021-01-19"), nextDate);
@@ -42,5 +39,4 @@ public class TestBusinessDayUtil {
         nextDate = businessDayUtil.getNextBusinessDay(date);
         assertEquals(sdf.parse("2021-01-19"), nextDate);
     }
-
 }

@@ -35,6 +35,5 @@ public class TestMarketPriceLookup {
         MarketPriceLookup mPriceLookup = new MarketPriceLookupV1(cfg);
         double price = mPriceLookup.lookup(pool, 4.5, settlementDate);
         assertEquals(100.9565571, price, 0.000000001);
-
     }
 }

@@ -5,10 +5,14 @@ import Util.Configuration.ConfigFile;
 import MBSData.Loan;
 import MBSData.Pool;
 import com.opencsv.bean.CsvToBeanBuilder;
+import org.apache.commons.lang3.time.DateUtils;
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -38,9 +42,14 @@ public class TestSettlementDateCalcV1 {
         SettlementDateCalcV1 sdc = new SettlementDateCalcV1(cfg);
 
         List<Date> dates = sdc.calculate(loan, pool);
-        for (Date date : dates) {
-            System.out.println(date);
-        }
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.MONTH, Calendar.JUNE);
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        Date expectedDate = DateUtils.truncate(calendar.getTime(), Calendar.DATE);
+
+        assertEquals(expectedDate, dates.get(0));
+
     }
 
     @Test
@@ -54,9 +63,13 @@ public class TestSettlementDateCalcV1 {
         SettlementDateCalcV1 sdc = new SettlementDateCalcV1(cfg);
 
         List<Date> dates = sdc.calculate(loan, pool);
-        for (Date date : dates) {
-            System.out.println(date);
-        }
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.MONTH, Calendar.JUNE);
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        Date expectedDate = DateUtils.truncate(calendar.getTime(), Calendar.DATE);
+
+        assertEquals(expectedDate, dates.get(0));
     }
 
 
@@ -75,6 +88,4 @@ public class TestSettlementDateCalcV1 {
 //            System.out.println(date);
 //        }
 //    }
-
-
 }

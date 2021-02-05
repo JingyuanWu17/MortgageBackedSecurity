@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class TestConfigFile {
     @Test
-    public void test() {
+    public void test_creatObject() {
         ConfigFile cfg = new ConfigFile();
         System.out.println(cfg.getDateFormat());
         System.out.println(cfg.getPoolsFileName());

@@ -32,7 +32,6 @@ public class TestBaseServicingMultsLookupV1 {
         Date settlementDate = settlementDates.get(0);
 
         BaseServicingMultsLookup baseMultsLookup = new BaseServicingMultsLookupV1(cfg);
-
         double baseMults = baseMultsLookup.lookup(pool, settlementDate);
 
         assertEquals(1.1, baseMults, 0.01);

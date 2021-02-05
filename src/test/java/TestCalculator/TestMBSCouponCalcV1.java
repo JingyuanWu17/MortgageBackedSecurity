@@ -7,6 +7,8 @@ import MBSData.Pool;
 import com.opencsv.bean.CsvToBeanBuilder;
 import org.junit.Test;
 
+import static org.junit.Assert.*;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.List;
@@ -28,8 +30,8 @@ public class TestMBSCouponCalcV1 {
         MBSCouponCalcV1 mbsCouponCalcV1 = new MBSCouponCalcV1(cfg);
 
         List<Double> MBSCoupons = mbsCouponCalcV1.calculate(loan, pool);
-        for (double MBSCoupon : MBSCoupons) {
-            System.out.println(MBSCoupon);
-        }
+
+        assertEquals(4.0, MBSCoupons.get(0), 0.001);
+        assertEquals(4.5, MBSCoupons.get(1), 0.001);
     }
 }
